@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+      <link rel="icon" type="image/svg+xml" href="./assets//img/R_RED.png" />
+    <title>Fundacion Red Educativa México - Educación con Validez Oficial</title>    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ========== RESET Y VARIABLES (igual que home) ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1A1F36;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --color-primary: #5A0C28;
+            --color-primary-dark: #3E071B;
+            --color-gold: #D4AF37;
+            --color-gold-dark: #B38F2A;
+            --color-gray-bg: #F9F8FC;
+            --color-border: #EDEFF2;
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.25s ease;
+        }
+
+        /* ========== HEADER (idéntico al home) ========== */
+ /* HEADER FIJO */
+.shared-header {
+    position: sticky; /* Cambiado de fixed a sticky */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1100;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+        .top-bar {
+            background-color: var(--color-primary);
+            color: white;
+            font-size: 0.85rem;
+            padding: 0.5rem 0;
+        }
+        .top-bar-container, .main-header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-bar-left span i {
+            margin-right: 8px;
+            color: var(--color-gold);
+        }
+        .main-header {
+            background: white;
+        }
+        .logo-link {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .logo-img {
+            display: block;
+            height: 48px;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: #2D3748;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-link i { font-size: 0.75rem; }
+        .nav-link:hover, .nav-link.active { color: var(--color-primary); }
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            min-width: 220px;
+            z-index: 1001;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            overflow: hidden;
+            animation: fadeDown 0.2s ease;
+        }
+        .submenu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        .submenu a:hover {
+            background: #FFF9E8;
+            border-left-color: var(--color-gold);
+            padding-left: 1.8rem;
+        }
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+        .mobile-menu {
+            display: none;
+            background: white;
+            border-top: 1px solid var(--color-border);
+            padding: 1rem 0;
+        }
+        .mobile-nav-link {
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            color: #2D3748;
+            display: block;
+        }
+        @media (max-width: 992px) {
+            .nav-menu { display: none; }
+            .menu-toggle { display: block; }
+        }
+
+        /* ========== ESTILOS PROPIOS DE OFERTA EDUCATIVA ========== */
+        .hero-oferta {
+            background: linear-gradient(135deg, #5A0C28, #8c1d40);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg-blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            top: -150px;
+            right: -150px;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+        .hero-bg-blob2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -100px;
+            filter: blur(50px);
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+        .hero-content h1 {
+            font-size: clamp(2rem, 8vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 18px;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            color: #ffffff;
+        }
+        .hero-content p {
+            font-size: clamp(1rem, 4vw, 1.25rem);
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+            color: #f0f0f0;
+        }
+
+        .section-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .rvo-section {
+            background: #fafafc;
+            border-radius: 32px;
+            padding: 50px 40px;
+            margin-bottom: 60px;
+            border: 1px solid rgba(212,175,55,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+        }
+        .rvo-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 5vw, 2.2rem);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .rvo-title span {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--color-gold);
+            border-radius: 3px;
+        }
+        .rvo-desc {
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #4B5563;
+            margin-bottom: 30px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .feature-card {
+            background: #fafafc;
+            border-radius: 24px;
+            padding: 25px;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--color-gold);
+            margin-bottom: 15px;
+            display: block;
+        }
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .programas-title {
+            text-align: center;
+            font-size: clamp(2rem, 6vw, 2.5rem);
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        .programas-title span {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--color-gold);
+            border-radius: 4px;
+        }
+
+        .cards-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        .programa-card {
+            width: 320px;
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(212,175,55,0.15);
+        }
+        .programa-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 50px rgba(90,12,40,0.15);
+            border-color: var(--color-gold);
+        }
+        .card-header {
+            height: 140px;
+            background: linear-gradient(145deg, #5A0C28, #8c1d40);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .card-header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 10px 10px, rgba(212,175,55,0.1) 2px, transparent 2px);
+            background-size: 20px 20px;
+            opacity: 0.5;
+        }
+        .card-header i.bg-icon {
+            position: absolute;
+            font-size: 5rem;
+            color: rgba(255,255,255,0.12);
+            bottom: -10px;
+            right: -10px;
+            transform: rotate(5deg);
+        }
+        .icon-circle {
+            width: 90px;
+            height: 90px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border: 3px solid var(--color-gold);
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+        .programa-card:hover .icon-circle {
+            transform: scale(1.05);
+        }
+        .icon-circle i {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+        }
+        .card-body {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .card-body h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: rgba(212,175,55,0.1);
+            color: var(--color-primary);
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .card-body p {
+            color: #4B5563;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            text-align: center;
+            flex: 1;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: var(--color-gold);
+            margin: 0 auto 20px;
+            opacity: 0.5;
+        }
+        .card-buttons {
+            display: flex;
+            gap: 10px;
+            flex-direction: row;
+        }
+        .btn-details, .btn-info {
+            padding: 12px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            flex: 1;
+            cursor: pointer;
+        }
+        .btn-details {
+            background: var(--color-primary);
+            color: white;
+            border: 2px solid transparent;
+        }
+        .btn-details:hover {
+            background: #8c1d40;
+            transform: translateY(-2px);
+        }
+        .btn-info {
+            background: transparent;
+            border: 2px solid var(--color-gold);
+            color: var(--color-primary);
+        }
+        .btn-info:hover {
+            background: var(--color-gold);
+            color: var(--color-primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* CTA */
+        .cta-section {
+            background: #fafafc;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .cta-section h2 {
+            color: var(--color-primary);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.2s;
+            border: none;
+            font-size: 1rem;
+        }
+        .btn-primary:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Footer (idéntico al home) */
+/* Footer Corregido */
+.shared-footer {
+    /* Cambiado de azul oscuro a tu guinda institucional oscuro */
+    background: var(--color-primary-dark); 
+    color: #ffffff;
+    padding: 3rem 1.5rem 1.5rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.footer-section h3 {
+    color: var(--color-gold); /* El dorado resalta sobre el guinda */
+    margin-bottom: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.footer-logo-img {
+    max-width: 180px;
+    height: auto;
+    margin-bottom: 1rem;
+    filter: brightness(0) invert(1); /* Opcional: vuelve el logo blanco si el original no contrasta bien */
+}
+
+.footer-link {
+    color: #e2e8f0;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-link:hover {
+    color: var(--color-gold);
+    padding-left: 5px; /* Efecto sutil de desplazamiento */
+}
+
+/* Iconos Sociales Corregidos */
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-icon {
+    /* Fondo dorado suave por defecto para que sea visible */
+    background: var(--color-gold);
+    color: var(--color-primary-dark);
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    /* Al pasar el mouse se vuelve blanco o brilla */
+    background: white;
+    color: var(--color-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(212, 175, 55, 0.3); /* Línea divisoria en dorado sutil */
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+        @media (max-width: 992px) {
+            .nav-menu { display: none; }
+            .menu-toggle { display: block; }
+        }
+
+        @media (max-width: 768px) {
+            .rvo-section { padding: 30px 25px; }
+            .card-buttons { flex-direction: column; }
+            .programa-card { width: 100%; max-width: 350px; }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+
+            .footer-section h3 {
+                font-size: 1rem;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== HEADER (mismo que home) ========== -->
+<header class="shared-header">
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="top-bar-left"><span><i class="fas fa-phone-alt"></i> 800 0440 189</span></div>
+            <div class="top-bar-right"></div>
+        </div>
+    </div>
+    <nav class="main-header">
+        <div class="main-header-container">
+            <a href="index.html" class="logo-link">
+                <img src="assets/logored.png" alt="Red Educativa México" class="logo-img">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+                <li style="position: relative;">
+                    <button class="nav-link active" id="btnOfertaDesktop">Oferta Educativa <i class="fas fa-chevron-down"></i></button>
+                    <div id="desktopSubmenu" class="submenu" style="display: none;">
+                        <a href="oferta-educativa.html">Programas Formativos</a>
+                        <a href="acuerdo286.html">Ruta/Sep-286</a>
+                        <a href="carreras-policiales.html">Programas Seguridad Pública</a>
+                        <a href="ingles.html">Certificación de Idiomas</a>
+                    </div>
+                </li>
+                <li><a href="sucursales.html" class="nav-link">Sucursales</a></li>
+                <li><a href="noticias.html" class="nav-link">Noticias</a></li>
+                <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+            </ul>
+            <button class="menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+        </div>
+        <div id="mobileMenuPanel" class="mobile-menu">
+            <nav class="mobile-nav">
+                <a href="index.html" class="mobile-nav-link">Inicio</a>
+                <a href="nosotros.html" class="mobile-nav-link">Nosotros</a>
+                <button id="mobileOfertaBtn" style="background:none; border:none; width:100%; text-align:left; padding:0.75rem 1.5rem; font-weight:600; display:flex; justify-content:space-between;">
+                    Oferta Educativa <i class="fas fa-chevron-down" id="mobileChevron"></i>
+                </button>
+                <div id="mobileSubmenuList" style="display:none; padding-left:1.5rem;">
+                    <a href="oferta-educativa.html">Programas Formativos</a>
+                    <a href="acuerdo286.html">Ruta/Sep-286</a>
+                    <a href="carreras-policiales.html">Seguridad Pública</a>
+                    <a href="ingles.html">Idiomas</a>
+                </div>
+                <a href="sucursales.html" class="mobile-nav-link">Sucursales</a>
+                <a href="noticias.html" class="mobile-nav-link">Noticias</a>
+                <a href="contacto.html" class="mobile-nav-link">Contacto</a>
+            </nav>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <!-- Hero -->
+    <section class="hero-oferta">
+        <div class="hero-bg-blob"></div>
+        <div class="hero-bg-blob2"></div>
+        <div class="hero-content">
+            <h1>Programas Formativos</h1>
+            <p>Descubre nuestros programas académicos diseñados para impulsar tu desarrollo profesional y personal.</p>
+        </div>
+    </section>
+
+    <!-- Sección Programas con RVOE -->
+    <div class="section-container">
+        <div class="rvo-section">
+            <h2 class="rvo-title">Programas con RVOE <span></span></h2>
+            <p class="rvo-desc">Nuestros programas cuentan con Reconocimiento de Validez Oficial de Estudios (RVOE) otorgado por la Secretaría de Educación Pública, garantizando la calidad y validez oficial de tu formación académica.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Validez Oficial</h3>
+                    <p>Todos nuestros programas cuentan con RVOE, lo que garantiza que tus estudios tienen validez ante la SEP y las autoridades educativas.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chalkboard-user"></i>
+                    <h3>Metodología Flexible</h3>
+                    <p>Modalidades presencial, en línea e híbrida, adaptadas a tus necesidades y horarios para que puedas estudiar sin descuidar tus responsabilidades.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Acompañamiento Docente</h3>
+                    <p>Contarás con asesores y tutores dedicados que te guiarán durante todo tu proceso educativo.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Plataforma Tecnológica</h3>
+                    <p>Acceso a nuestra plataforma educativa con materiales, biblioteca virtual y herramientas interactivas.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="programas-title">Nuestros Programas <span></span></h2>
+        <div class="cards-wrapper">
+            <!-- Bachillerato en 2 años -->
+            <div class="programa-card">
+                <div class="card-header">
+                    <div class="card-header-bg"></div>
+                    <i class="fas fa-graduation-cap bg-icon"></i>
+                    <div class="icon-circle">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3>Bachillerato en 2 años</h3>
+                    <div class="badges">
+                        <span class="badge">2 años</span>
+                        <span class="badge">Cuatrimestral</span>
+                    </div>
+                    <p>Formación académica sólida con enfoque en competencias digitales y tecnológicas. Obtén tu certificado de bachillerato en sólo 2 años.</p>
+                    <div class="divider"></div>
+                    <div class="card-buttons">
+                        <a href="./bachillerato-detalle.html" class="btn-info">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carreras Ejecutivas -->
+            <div class="programa-card">
+                <div class="card-header">
+                    <div class="card-header-bg"></div>
+                    <i class="fas fa-briefcase bg-icon"></i>
+                    <div class="icon-circle">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3>Carreras Ejecutivas</h3>
+                    <div class="badges">
+                        <span class="badge">2.5 años</span>
+                        <span class="badge">Sabatino</span>
+                    </div>
+                    <p>Programas diseñados para profesionales que buscan actualizar sus conocimientos y crecer en el ámbito laboral sin descuidar su trabajo.</p>
+                    <div class="divider"></div>
+                    <div class="card-buttons">
+                        <a href="./carreras-ejecutivas-detalle.html" class="btn-info">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- ========== FOOTER (idéntico al home) ========== -->
+<footer class="shared-footer">
+    <div class="footer-grid">
+        <div class="footer-section">
+            <img src="assets/logored.png" alt="Fundación Red Educativa México" class="footer-logo-img">
+            <p>Excelencia académica con respaldo oficial y validez SEP.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Fundación Red Educativa México</h3>
+            <p>Plataforma integral de evaluación, acreditación y homologación de programas educativos a nivel medio superior.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Contacto</h3>
+            <p><a href="tel:8000440189" class="footer-link"><i class="fas fa-phone"></i> 800 0440 189</a></p>
+            <p><a href="mailto:admin@rededucativamexico.org" class="footer-link"><i class="fas fa-envelope"></i> admin@rededucativamexico.org</a></p>
+            <p><a href="#" class="footer-link"><i class="fas fa-map-marker-alt"></i> Morelos, México</a></p>
+            <div class="social-icons">
+                <a href="https://web.facebook.com/RedEduMex/" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/rededucativamexico/" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@rededucativamex" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                <a href="https://x.com/RPre4t" class="social-icon"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Red Educativa México. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<!-- ========== SCRIPTS PARA MENÚS ========== -->
+<script>
+    // Submenu desktop
+    const btnOferta = document.getElementById('btnOfertaDesktop');
+    const submenu = document.getElementById('desktopSubmenu');
+    if(btnOferta && submenu) {
+        btnOferta.addEventListener('click', (e) => { e.stopPropagation(); submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block'; });
+        document.addEventListener('click', (e) => { if(!btnOferta.contains(e.target) && !submenu.contains(e.target)) submenu.style.display = 'none'; });
+    }
+    // Mobile menu
+    const mobileToggle = document.getElementById('mobileMenuToggle');
+    const mobilePanel = document.getElementById('mobileMenuPanel');
+    if(mobileToggle) mobileToggle.addEventListener('click', () => { mobilePanel.style.display = mobilePanel.style.display === 'block' ? 'none' : 'block'; });
+    const mobileOfertaBtn = document.getElementById('mobileOfertaBtn');
+    const mobileSubmenuDiv = document.getElementById('mobileSubmenuList');
+    const mobileChevron = document.getElementById('mobileChevron');
+    if(mobileOfertaBtn && mobileSubmenuDiv) {
+        mobileOfertaBtn.addEventListener('click', () => {
+            const isVisible = mobileSubmenuDiv.style.display === 'block';
+            mobileSubmenuDiv.style.display = isVisible ? 'none' : 'block';
+            if(mobileChevron) mobileChevron.style.transform = isVisible ? 'rotate(0deg)' : 'rotate(180deg)';
+        });
+    }
+    window.addEventListener('resize', () => {
+        if(window.innerWidth > 992 && mobilePanel) mobilePanel.style.display = 'none';
+        if(submenu) submenu.style.display = 'none';
+    });
+</script>
+<div id="chatbot-root"></div>
+<script src="chatbot/chatbot-widget.js"></script>
+</body>
+</html>

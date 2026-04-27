@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+      <link rel="icon" type="image/svg+xml" href="./assets//img/R_RED.png" />
+    <title>Fundacion Red Educativa México - Educación con Validez Oficial</title>    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1A1F36;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Paleta institucional */
+        :root {
+            --color-primary: #5A0C28;
+            --color-primary-dark: #3E071B;
+            --color-gold: #D4AF37;
+            --color-gold-dark: #B38F2A;
+            --color-gray-bg: #F9F8FC;
+            --color-border: #EDEFF2;
+            --shadow-md: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.25s ease;
+        }
+
+        /* HEADER */
+/* HEADER FIJO */
+.shared-header {
+    position: sticky; /* Cambiado de fixed a sticky */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1100;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+        .top-bar {
+            background-color: var(--color-primary);
+            color: white;
+            font-size: 0.85rem;
+            padding: 0.5rem 0;
+        }
+
+        .top-bar-container, .main-header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar-left span i {
+            margin-right: 8px;
+            color: var(--color-gold);
+        }
+
+        .main-header {
+            background: white;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .logo-img {
+            display: block;
+            height: 48px;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
+        }
+
+        /* Navegación desktop */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: #2D3748;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link i {
+            font-size: 0.75rem;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--color-primary);
+        }
+
+        /* Submenu */
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            min-width: 220px;
+            z-index: 1001;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            overflow: hidden;
+            animation: fadeDown 0.2s ease;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .submenu a:hover {
+            background: #FFF9E8;
+            border-left-color: var(--color-gold);
+            padding-left: 1.8rem;
+        }
+
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: white;
+            border-top: 1px solid var(--color-border);
+            padding: 1rem 0;
+        }
+
+        .mobile-nav-link {
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            color: #2D3748;
+            display: block;
+        }
+
+        @media (max-width: 992px) {
+            .nav-menu { display: none; }
+            .menu-toggle { display: block; }
+        }
+
+        /* Footer */
+  /* Footer Corregido */
+.shared-footer {
+    /* Cambiado de azul oscuro a tu guinda institucional oscuro */
+    background: var(--color-primary-dark); 
+    color: #ffffff;
+    padding: 3rem 1.5rem 1.5rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.footer-section h3 {
+    color: var(--color-gold); /* El dorado resalta sobre el guinda */
+    margin-bottom: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.footer-logo-img {
+    max-width: 180px;
+    height: auto;
+    margin-bottom: 1rem;
+    filter: brightness(0) invert(1); /* Opcional: vuelve el logo blanco si el original no contrasta bien */
+}
+
+.footer-link {
+    color: #e2e8f0;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-link:hover {
+    color: var(--color-gold);
+    padding-left: 5px; /* Efecto sutil de desplazamiento */
+}
+
+/* Iconos Sociales Corregidos */
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-icon {
+    /* Fondo dorado suave por defecto para que sea visible */
+    background: var(--color-gold);
+    color: var(--color-primary-dark);
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    /* Al pasar el mouse se vuelve blanco o brilla */
+    background: white;
+    color: var(--color-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(212, 175, 55, 0.3); /* Línea divisoria en dorado sutil */
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .footer-section {
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        font-size: 1rem;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+    .social-icons { display: flex; gap: 1rem; margin-top: 1rem; }
+        .social-icon {
+            background: rgba(255,255,255,0.08);
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 60px;
+            transition: 0.2s;
+        }
+        .social-icon:hover { background: var(--color-gold); color: #0F172A; }
+        .footer-bottom { text-align: center; padding-top: 2rem; margin-top: 2rem; border-top: 1px solid rgba(212,175,55,0.2); }
+    </style>
+</head>
+<body>
+    <header class="shared-header">
+        <div class="top-bar">
+            <div class="top-bar-container">
+                <div class="top-bar-left"><span><i class="fas fa-phone-alt"></i> 800 0440 189</span></div>
+                <div class="top-bar-right"></div>
+            </div>
+        </div>
+        <nav class="main-header">
+            <div class="main-header-container">
+                <a href="index.html" class="logo-link">
+                    <img src="assets/logored.png" alt="Red Educativa México" class="logo-img">
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+                    <li style="position: relative;">
+                        <button class="nav-link" id="btnOfertaDesktop">Oferta Educativa <i class="fas fa-chevron-down"></i></button>
+                        <div id="desktopSubmenu" class="submenu" style="display: none;">
+                            <a href="oferta-educativa.html">Programas Formativos</a>
+                            <a href="acuerdo286.html">Ruta/Sep-286</a>
+                            <a href="carreras-policiales.html">Programas Seguridad Pública</a>
+                            <a href="ingles.html">Certificación de Idiomas</a>
+                        </div>
+                    </li>
+                    <li><a href="sucursales.html" class="nav-link">Sucursales</a></li>
+                    <li><a href="noticias.html" class="nav-link">Noticias</a></li>
+                    <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+                <button class="menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+            </div>
+            <div id="mobileMenuPanel" class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="index.html" class="mobile-nav-link">Inicio</a>
+                    <a href="nosotros.html" class="mobile-nav-link">Nosotros</a>
+                    <button id="mobileOfertaBtn" style="background:none; border:none; width:100%; text-align:left; padding:0.75rem 1.5rem; font-weight:600; display:flex; justify-content:space-between;">
+                        Oferta Educativa <i class="fas fa-chevron-down" id="mobileChevron"></i>
+                    </button>
+                    <div id="mobileSubmenuList" style="display:none; padding-left:1.5rem;">
+                        <a href="oferta-educativa.html">Programas Formativos</a>
+                        <a href="acuerdo286.html">Ruta/Sep-286</a>
+                        <a href="carreras-policiales.html">Seguridad Pública</a>
+                        <a href="ingles.html">Idiomas</a>
+                    </div>
+                    <a href="sucursales.html" class="mobile-nav-link">Sucursales</a>
+                    <a href="noticias.html" class="mobile-nav-link">Noticias</a>
+                    <a href="contacto.html" class="mobile-nav-link">Contacto</a>
+                </nav>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Becas y Apoyos</h1>
+                <p class="hero-subtitle">
+                    Accede a educación de calidad con nuestros programas de financiamiento y becas
+                </p>
+            </div>
+        </section>
+
+        <section style="padding: 3.75rem 1.25rem; background: var(--color-bg-primary);">
+            <div style="max-width: 75rem; margin: 0 auto;">
+                <h2 style="text-align: center; color: var(--color-primary); margin-bottom: 3rem;">Programas de Becas Disponibles</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                    <div style="padding: 2rem; background: var(--color-bg-secondary); border-radius: 1rem; border-top: 4px solid var(--color-primary);">
+                        <h3 style="color: var(--color-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-medal"></i> Beca Excelencia
+                        </h3>
+                        <p style="margin-bottom: 1rem; font-weight: 600; color: var(--color-primary);">Cobertura: 50-100%</p>
+                        <p style="margin-bottom: 1rem;">Para estudiantes con promedio superior a 9.0 en educación media superior.</p>
+                        <a href="contacto.html" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">Solicitar <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div style="padding: 2rem; background: var(--color-bg-secondary); border-radius: 1rem; border-top: 4px solid var(--color-primary);">
+                        <h3 style="color: var(--color-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-hands-helping"></i> Beca Social
+                        </h3>
+                        <p style="margin-bottom: 1rem; font-weight: 600; color: var(--color-primary);">Cobertura: 25-75%</p>
+                        <p style="margin-bottom: 1rem;">Para estudiantes con situación económica vulnerable que demuestren compromiso académico.</p>
+                        <a href="contacto.html" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">Solicitar <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div style="padding: 2rem; background: var(--color-bg-secondary); border-radius: 1rem; border-top: 4px solid var(--color-primary);">
+                        <h3 style="color: var(--color-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-briefcase"></i> Beca Laboral
+                        </h3>
+                        <p style="margin-bottom: 1rem; font-weight: 600; color: var(--color-primary);">Cobertura: 30-60%</p>
+                        <p style="margin-bottom: 1rem;">Para trabajadores que deseen continuar sus estudios sin abandonar su trabajo.</p>
+                        <a href="contacto.html" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">Solicitar <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div style="padding: 2rem; background: var(--color-bg-secondary); border-radius: 1rem; border-top: 4px solid var(--color-primary);">
+                        <h3 style="color: var(--color-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-community"></i> Beca Comunitaria
+                        </h3>
+                        <p style="margin-bottom: 1rem; font-weight: 600; color: var(--color-primary);">Cobertura: 40-70%</p>
+                        <p style="margin-bottom: 1rem;">Para miembros de organizaciones comunitarias y sociales reconocidas.</p>
+                        <a href="contacto.html" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">Solicitar <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div style="padding: 2rem; background: var(--color-bg-secondary); border-radius: 1rem; border-top: 4px solid var(--color-primary);">
+                        <h3 style="color: var(--color-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-graduation-cap"></i> Beca Convenio
+                        </h3>
+                        <p style="margin-bottom: 1rem; font-weight: 600; color: var(--color-primary);">Cobertura: 15-50%</p>
+                        <p style="margin-bottom: 1rem;">Descuentos especiales para empleados de empresas con convenio con Red Educativa.</p>
+                        <a href="contacto.html" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">Solicitar <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div style="padding: 2rem; background: var(--color-bg-secondary); border-radius: 1rem; border-top: 4px solid var(--color-primary);">
+                        <h3 style="color: var(--color-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-credit-card"></i> Planes de Pago
+                        </h3>
+                        <p style="margin-bottom: 1rem; font-weight: 600; color: var(--color-primary);">Hasta 12 mensualidades</p>
+                        <p style="margin-bottom: 1rem;">Flexibilidad en pagos sin intereses para todos nuestros estudiantes.</p>
+                        <a href="contacto.html" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">Solicitar <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div style="background: var(--color-primary-light); padding: 2rem; border-radius: 1rem; margin-bottom: 3rem;">
+                    <h3 style="color: var(--color-primary); margin-bottom: 1rem;">Requisitos Generales</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <i class="fas fa-check" style="position: absolute; left: 0; color: var(--color-primary);"></i>
+                            Ser ciudadano mexicano o residente legal
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <i class="fas fa-check" style="position: absolute; left: 0; color: var(--color-primary);"></i>
+                            Tener educación media completa
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <i class="fas fa-check" style="position: absolute; left: 0; color: var(--color-primary);"></i>
+                            Estar inscrito o comprometido a inscribirse en un programa
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <i class="fas fa-check" style="position: absolute; left: 0; color: var(--color-primary);"></i>
+                            Participar en procesos de evaluación y selección
+                        </li>
+                    </ul>
+                </div>
+
+                <div style="text-align: center; padding: 2rem; background: var(--color-secondary-light); border-radius: 1rem;">
+                    <h3 style="color: var(--color-primary); margin-bottom: 1rem;">¿Tienes dudas sobre becas?</h3>
+                    <p style="margin-bottom: 1.5rem;">Contáctanos y te ayudaremos a encontrar la beca que mejor se adapte a tu situación.</p>
+                    <a href="contacto.html" class="btn btn-primary">Contactar Asesor de Becas</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="shared-footer">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <img src="assets/logored.png" alt="Fundación Red Educativa" class="footer-logo-img">
+                <p>Excelencia académica con respaldo oficial.</p>
+            </div>
+            <div class="footer-section"><h3>Fundación</h3><p>Plataforma integral de evaluación, acreditación y homologación de programas educativos.</p></div>
+            <div class="footer-section"><h3>Contacto</h3><p><a href="tel:8000440189" class="footer-link"><i class="fas fa-phone"></i> 800 0440 189</a></p><p><a href="mailto:admin@rededucativamexico.org" class="footer-link"><i class="fas fa-envelope"></i> admin@rededucativamexico.org</a></p><div class="social-icons"><a href="https://web.facebook.com/RedEduMex/" class="social-icon"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/rededucativamexico/" class="social-icon"><i class="fab fa-instagram"></i></a><a href="https://www.tiktok.com/@rededucativamex" class="social-icon"><i class="fab fa-tiktok"></i></a><a href="https://x.com/RPre4t" class="social-icon"><i class="fab fa-twitter"></i></a></div></div>
+        </div>
+        <div class="footer-bottom"><p>© 2026 Red Educativa México. Todos los derechos reservados.</p></div>
+    </footer>
+
+    <script>
+        // ----- Submenús -----
+        const btnOferta = document.getElementById('btnOfertaDesktop');
+        const submenu = document.getElementById('desktopSubmenu');
+        if(btnOferta && submenu) {
+            btnOferta.addEventListener('click', (e) => { e.stopPropagation(); submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block'; });
+            document.addEventListener('click', (e) => { if(!btnOferta.contains(e.target) && !submenu.contains(e.target)) submenu.style.display = 'none'; });
+        }
+        const mobileToggle = document.getElementById('mobileMenuToggle');
+        const mobilePanel = document.getElementById('mobileMenuPanel');
+        if(mobileToggle) mobileToggle.addEventListener('click', () => { mobilePanel.style.display = mobilePanel.style.display === 'block' ? 'none' : 'block'; });
+        const mobileOfertaBtn = document.getElementById('mobileOfertaBtn');
+        const mobileSubmenuDiv = document.getElementById('mobileSubmenuList');
+        if(mobileOfertaBtn) mobileOfertaBtn.addEventListener('click', () => { const isVisible = mobileSubmenuDiv.style.display === 'block'; mobileSubmenuDiv.style.display = isVisible ? 'none' : 'block'; document.getElementById('mobileChevron').style.transform = isVisible ? 'rotate(0deg)' : 'rotate(180deg)'; });
+    </script>
+
+    <script src="script.js"></script>
+    <div id="chatbot-root"></div>
+    <script src="chatbot/chatbot-widget.js"></script>
+</body>
+</html>

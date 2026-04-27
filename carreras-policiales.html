@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+      <link rel="icon" type="image/svg+xml" href="./assets//img/R_RED.png" />
+    <title>Fundacion Red Educativa México - Educación con Validez Oficial</title>    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1A1F36;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --color-primary: #5A0C28;
+            --color-primary-dark: #3E071B;
+            --color-gold: #D4AF37;
+            --color-gold-dark: #B38F2A;
+            --color-gray-bg: #F9F8FC;
+            --color-border: #EDEFF2;
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.25s ease;
+        }
+
+        /* Header (idéntico al home) */
+  /* HEADER FIJO */
+.shared-header {
+    position: sticky; /* Cambiado de fixed a sticky */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1100;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+        .top-bar {
+            background-color: var(--color-primary);
+            color: white;
+            font-size: 0.85rem;
+            padding: 0.5rem 0;
+        }
+
+        .top-bar-container,
+        .main-header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar-left span i {
+            margin-right: 8px;
+            color: var(--color-gold);
+        }
+
+        .main-header {
+            background: white;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .logo-img {
+            display: block;
+            height: 48px;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: #2D3748;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link i {
+            font-size: 0.75rem;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-primary);
+        }
+
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            min-width: 220px;
+            z-index: 1001;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            overflow: hidden;
+            animation: fadeDown 0.2s ease;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .submenu a:hover {
+            background: #FFF9E8;
+            border-left-color: var(--color-gold);
+            padding-left: 1.8rem;
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: white;
+            border-top: 1px solid var(--color-border);
+            padding: 1rem 0;
+        }
+
+        .mobile-nav-link {
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            color: #2D3748;
+            display: block;
+        }
+
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Estilos específicos */
+        .hero-policial {
+            background: linear-gradient(135deg, #5A0C28, #8c1d40);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            top: -150px;
+            right: -150px;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+        .hero-bg-blob2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -100px;
+            filter: blur(50px);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        .seccion-imagen-texto {
+            padding: 60px 20px;
+            background: white;
+        }
+
+        .grid-2cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-2cols img {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--color-gold);
+        }
+
+        .texto-descripcion p {
+            font-size: 1.1rem;
+            color: #4B5563;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .carreras-section {
+            padding: 60px 20px;
+            background: #fafafc;
+        }
+
+        .container-cards {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 30px;
+        }
+
+        .card-policial {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-policial:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 50px rgba(90, 12, 40, 0.15);
+        }
+
+        .card-header {
+            height: 140px;
+            background: linear-gradient(145deg, #5A0C28, #8c1d40);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-header i.bg-icon {
+            position: absolute;
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.12);
+            bottom: -10px;
+            right: -10px;
+            transform: rotate(5deg);
+        }
+
+        .card-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-body {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .badge-duracion {
+            display: inline-block;
+            background: var(--color-gold);
+            color: var(--color-primary);
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .rvoe {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        .perfil-title {
+            color: var(--color-primary);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 15px 0 10px;
+        }
+
+        .perfil-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .perfil-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: #4B5563;
+        }
+
+        .perfil-list li i {
+            color: var(--color-gold);
+            font-size: 0.8rem;
+            margin-top: 3px;
+        }
+
+        .btn-inscribir {
+            background: var(--color-gold);
+            color: var(--color-primary-dark);
+            padding: 12px 20px;
+            border-radius: 40px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .btn-inscribir:hover {
+            background: #C99B2E;
+            transform: translateY(-2px);
+        }
+
+        /* Modal y toast */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.2s, opacity 0.2s;
+        }
+
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-container {
+            background: white;
+            border-radius: 32px;
+            max-width: 500px;
+            width: 90%;
+            padding: 2rem;
+            position: relative;
+            border-top: 6px solid var(--color-gold);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--color-primary);
+        }
+
+        .modal-container h3 {
+            color: var(--color-primary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-inscripcion input {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            margin-bottom: 1.2rem;
+            border: 1px solid var(--color-border);
+            border-radius: 60px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .form-inscripcion input:focus {
+            border-color: var(--color-gold);
+        }
+
+        .form-inscripcion button {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 0.9rem;
+            width: 100%;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .form-inscripcion button:hover {
+            background: var(--color-primary-dark);
+        }
+
+        .toast-modal {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: white;
+            border-radius: 60px;
+            padding: 1rem 2rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 2100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border-left: 6px solid var(--color-gold);
+            font-weight: 500;
+        }
+
+        .toast-modal.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .toast-modal.success {
+            border-left-color: #2e7d32;
+        }
+
+        .toast-modal.error {
+            border-left-color: #c62828;
+        }
+
+        .toast-modal i {
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        /* Footer Corregido */
+        .shared-footer {
+            /* Cambiado de azul oscuro a tu guinda institucional oscuro */
+            background: var(--color-primary-dark);
+            color: #ffffff;
+            padding: 3rem 1.5rem 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            color: var(--color-gold);
+            /* El dorado resalta sobre el guinda */
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-logo-img {
+            max-width: 180px;
+            height: auto;
+            margin-bottom: 1rem;
+            filter: brightness(0) invert(1);
+            /* Opcional: vuelve el logo blanco si el original no contrasta bien */
+        }
+
+        .footer-link {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--color-gold);
+            padding-left: 5px;
+            /* Efecto sutil de desplazamiento */
+        }
+
+        /* Iconos Sociales Corregidos */
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            /* Fondo dorado suave por defecto para que sea visible */
+            background: var(--color-gold);
+            color: var(--color-primary-dark);
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            /* Al pasar el mouse se vuelve blanco o brilla */
+            background: white;
+            color: var(--color-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            /* Línea divisoria en dorado sutil */
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2cols {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-policial {
+                padding: 60px 20px;
+            }
+
+            .texto-descripcion p {
+                font-size: 1rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+
+            .footer-section h3 {
+                font-size: 1rem;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="shared-header">
+        <div class="top-bar">
+            <div class="top-bar-container">
+                <div class="top-bar-left"><span><i class="fas fa-phone-alt"></i> 800 0440 189</span></div>
+                <div class="top-bar-right"></div>
+            </div>
+        </div>
+        <nav class="main-header">
+            <div class="main-header-container">
+                <a href="index.html" class="logo-link"><img src="assets/logored.png" alt="Red Educativa México"
+                        class="logo-img"></a>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+                    <li style="position: relative;"><button class="nav-link active" id="btnOfertaDesktop">Oferta
+                            Educativa <i class="fas fa-chevron-down"></i></button>
+                        <div id="desktopSubmenu" class="submenu" style="display: none;">
+                            <a href="oferta-educativa.html">Programas Formativos</a>
+                            <a href="acuerdo286.html">Ruta/Sep-286</a>
+                            <a href="carreras-policiales.html">Programas Seguridad Pública</a>
+                            <a href="ingles.html">Certificación de Idiomas</a>
+                        </div>
+                    </li>
+                    <li><a href="sucursales.html" class="nav-link">Sucursales</a></li>
+                    <li><a href="noticias.html" class="nav-link">Noticias</a></li>
+                    <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+                <button class="menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+            </div>
+            <div id="mobileMenuPanel" class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="index.html" class="mobile-nav-link">Inicio</a>
+                    <a href="nosotros.html" class="mobile-nav-link">Nosotros</a>
+                    <button id="mobileOfertaBtn"
+                        style="background:none; border:none; width:100%; text-align:left; padding:0.75rem 1.5rem; font-weight:600; display:flex; justify-content:space-between;">Oferta
+                        Educativa <i class="fas fa-chevron-down" id="mobileChevron"></i></button>
+                    <div id="mobileSubmenuList" style="display:none; padding-left:1.5rem;">
+                        <a href="oferta-educativa.html" class="mobile-nav-link">Programas Formativos</a>
+                        <a href="acuerdo286.html" class="mobile-nav-link">Ruta/Sep-286</a>
+                        <a href="carreras-policiales.html" class="mobile-nav-link">Seguridad Pública</a>
+                        <a href="ingles.html" class="mobile-nav-link">Idiomas</a>
+                    </div>
+                    <a href="sucursales.html" class="mobile-nav-link">Sucursales</a>
+                    <a href="noticias.html" class="mobile-nav-link">Noticias</a>
+                    <a href="contacto.html" class="mobile-nav-link">Contacto</a>
+                </nav>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-policial">
+            <div class="hero-bg-blob"></div>
+            <div class="hero-bg-blob2"></div>
+            <div class="hero-content">
+                <h1>Programas de Seguridad Pública</h1>
+                <p>Formación especializada en seguridad pública y ciberseguridad, con RVOE y modalidad 100% virtual.</p>
+            </div>
+        </section>
+
+        <section class="seccion-imagen-texto">
+            <div class="grid-2cols">
+                <div><img src="./assets/img/img6.jpg" alt="Formación en seguridad pública"></div>
+                <div class="texto-descripcion">
+                    <p>Nuestras carreras policiales están diseñadas para formar profesionales altamente capacitados en
+                        el ámbito de la seguridad pública y la ciberseguridad. A través de un modelo educativo flexible
+                        y actualizado, podrás adquirir conocimientos teóricos y prácticos que responden a las
+                        necesidades reales del entorno actual.</p>
+                    <p>Contamos con programas con validez oficial (RVOE), impartidos en modalidad 100% virtual, ideales
+                        para quienes buscan superarse profesionalmente sin descuidar sus actividades laborales o
+                        personales.</p>
+                    <p>Prepárate para enfrentar los retos actuales en materia de seguridad, prevención del delito y
+                        protección digital, desarrollando habilidades clave como análisis, toma de decisiones y uso de
+                        tecnología aplicada a la seguridad.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="carreras-section">
+            <div class="container-cards">
+                <!-- TSU en Seguridad Pública -->
+                <div class="card-policial" data-programa="TSU en Seguridad Pública">
+                    <div class="card-header">
+                        <i class="fas fa-shield-alt bg-icon"></i>
+                        <h3>TSU en Seguridad Pública</h3>
+                    </div>
+                    <div class="card-body">
+                        <span class="badge-duracion">Duración: 1 año</span>
+                        <div class="rvoe">RVOE: 20260718</div>
+                        <div class="perfil-title">Perfil del postulante</div>
+                        <ul class="perfil-list">
+                            <li><i class="fas fa-check-circle"></i> Acta de nacimiento actualizada</li>
+                            <li><i class="fas fa-check-circle"></i> Certificado de Bachillerato</li>
+                            <li><i class="fas fa-check-circle"></i> Contar con 18 años o más</li>
+                            <li><i class="fas fa-check-circle"></i> INE</li>
+                            <li><i class="fas fa-check-circle"></i> Flexibilidad para estudiar desde cualquier lugar
+                            </li>
+                            <li><i class="fas fa-check-circle"></i> Clases solo los sábados, 100% virtual</li>
+                        </ul>
+                        <button class="btn-inscribir" data-programa="TSU en Seguridad Pública"><i
+                                class="fas fa-pencil-alt"></i> Inscribirme</button>
+                    </div>
+                </div>
+
+                <!-- Licenciatura Seguridad Pública -->
+                <div class="card-policial" data-programa="Licenciatura Seguridad Pública">
+                    <div class="card-header">
+                        <i class="fas fa-shield-alt bg-icon"></i>
+                        <h3>Licenciatura Seguridad Pública</h3>
+                    </div>
+                    <div class="card-body">
+                        <span class="badge-duracion">Duración: 2.5 años</span>
+                        <div class="rvoe">RVOE: 20260717</div>
+                        <div class="perfil-title">Perfil del postulante</div>
+                        <ul class="perfil-list">
+                            <li><i class="fas fa-check-circle"></i> Acta de nacimiento actualizada</li>
+                            <li><i class="fas fa-check-circle"></i> Certificado de Bachillerato</li>
+                            <li><i class="fas fa-check-circle"></i> Contar con 18 años o más</li>
+                            <li><i class="fas fa-check-circle"></i> INE</li>
+                            <li><i class="fas fa-check-circle"></i> Flexibilidad para estudiar desde cualquier lugar
+                            </li>
+                            <li><i class="fas fa-check-circle"></i> Clases solo los sábados, 100% virtual</li>
+                        </ul>
+                        <button class="btn-inscribir" data-programa="Licenciatura Seguridad Pública"><i
+                                class="fas fa-pencil-alt"></i> Inscribirme</button>
+                    </div>
+                </div>
+
+                <!-- Licenciatura Ciberseguridad -->
+                <div class="card-policial" data-programa="Licenciatura Ciberseguridad">
+                    <div class="card-header">
+                        <i class="fas fa-shield-alt bg-icon"></i>
+                        <h3>Licenciatura Ciberseguridad</h3>
+                    </div>
+                    <div class="card-body">
+                        <span class="badge-duracion">Duración: 2.5 años</span>
+                        <div class="rvoe">RVOE: 20260716</div>
+                        <div class="perfil-title">Perfil del postulante</div>
+                        <ul class="perfil-list">
+                            <li><i class="fas fa-check-circle"></i> Acta de nacimiento actualizada</li>
+                            <li><i class="fas fa-check-circle"></i> Certificado de Bachillerato</li>
+                            <li><i class="fas fa-check-circle"></i> Contar con 18 años o más</li>
+                            <li><i class="fas fa-check-circle"></i> INE</li>
+                            <li><i class="fas fa-check-circle"></i> Flexibilidad para estudiar desde cualquier lugar
+                            </li>
+                            <li><i class="fas fa-check-circle"></i> Clases solo los sábados, 100% virtual</li>
+                        </ul>
+                        <button class="btn-inscribir" data-programa="Licenciatura Ciberseguridad"><i
+                                class="fas fa-pencil-alt"></i> Inscribirme</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="shared-footer">
+        <div class="footer-grid">
+            <div class="footer-section"><img src="assets/logored.png" alt="Fundación Red Educativa México"
+                    class="footer-logo-img">
+                <p>Excelencia académica con respaldo oficial.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Fundación Red Educativa México</h3>
+                <p>Plataforma integral de evaluación, acreditación y homologación de programas educativos a nivel medio
+                    superior.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p><a href="tel:8000440189" class="footer-link"><i class="fas fa-phone"></i> 800 0440 189</a></p>
+                <p><a href="mailto:admin@rededucativamexico.org" class="footer-link"><i class="fas fa-envelope"></i>
+                        admin@rededucativamexico.org</a></p>
+                <div class="social-icons"><a href="https://web.facebook.com/RedEduMex/" class="social-icon"><i
+                            class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/rededucativamexico/"
+                        class="social-icon"><i class="fab fa-instagram"></i></a><a
+                        href="https://www.tiktok.com/@rededucativamex" class="social-icon"><i
+                            class="fab fa-tiktok"></i></a><a href="https://x.com/RPre4t" class="social-icon"><i
+                            class="fab fa-twitter"></i></a></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Red Educativa México. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal de inscripción -->
+    <div id="inscripcionModal" class="modal-overlay">
+        <div class="modal-container">
+            <span class="modal-close" id="closeModalBtn">&times;</span>
+            <h3>Solicitar inscripción</h3>
+            <form class="form-inscripcion" id="inscripcionForm">
+                <input type="text" name="nombre" placeholder="Nombre completo *" required>
+                <input type="email" name="email" placeholder="Correo electrónico *" required>
+                <input type="tel" name="telefono" placeholder="Teléfono / WhatsApp *" required>
+                <input type="hidden" name="programa" id="programaSeleccionado" value="">
+                <button type="submit">Enviar solicitud <i class="fas fa-paper-plane"></i></button>
+            </form>
+            <p style="font-size:0.75rem; margin-top:1rem; text-align:center; color:gray;">Tus datos serán tratados
+                confidencialmente.</p>
+        </div>
+    </div>
+
+    <div id="notificationToast" class="toast-modal"><i id="toastIcon" class="fas fa-check-circle"></i><span
+            id="toastMessage">Mensaje</span></div>
+
+    <script>
+        // Menús desktop/mobile
+        const btnOferta = document.getElementById('btnOfertaDesktop');
+        const submenu = document.getElementById('desktopSubmenu');
+        if (btnOferta && submenu) {
+            btnOferta.addEventListener('click', (e) => { e.stopPropagation(); submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block'; });
+            document.addEventListener('click', (e) => { if (!btnOferta.contains(e.target) && !submenu.contains(e.target)) submenu.style.display = 'none'; });
+        }
+        const mobileToggle = document.getElementById('mobileMenuToggle');
+        const mobilePanel = document.getElementById('mobileMenuPanel');
+        if (mobileToggle) mobileToggle.addEventListener('click', () => { mobilePanel.style.display = mobilePanel.style.display === 'block' ? 'none' : 'block'; });
+        const mobileOfertaBtn = document.getElementById('mobileOfertaBtn');
+        const mobileSubmenuDiv = document.getElementById('mobileSubmenuList');
+        const mobileChevron = document.getElementById('mobileChevron');
+        if (mobileOfertaBtn && mobileSubmenuDiv) {
+            mobileOfertaBtn.addEventListener('click', () => {
+                const isVisible = mobileSubmenuDiv.style.display === 'block';
+                mobileSubmenuDiv.style.display = isVisible ? 'none' : 'block';
+                if (mobileChevron) mobileChevron.style.transform = isVisible ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+        }
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 992 && mobilePanel) mobilePanel.style.display = 'none';
+            if (submenu) submenu.style.display = 'none';
+        });
+
+        // Modal y envío
+        const modal = document.getElementById('inscripcionModal');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const form = document.getElementById('inscripcionForm');
+        const programaInput = document.getElementById('programaSeleccionado');
+        const toast = document.getElementById('notificationToast');
+        const toastIcon = document.getElementById('toastIcon');
+        const toastMessage = document.getElementById('toastMessage');
+
+        function showToast(msg, isError = false) {
+            toast.classList.remove('success', 'error');
+            if (isError) {
+                toast.classList.add('error');
+                toastIcon.className = 'fas fa-exclamation-triangle';
+            } else {
+                toast.classList.add('success');
+                toastIcon.className = 'fas fa-check-circle';
+            }
+            toastMessage.innerText = msg;
+            toast.classList.add('active');
+            setTimeout(() => toast.classList.remove('active'), 4000);
+        }
+
+        // Abrir modal con el programa seleccionado
+        document.querySelectorAll('.btn-inscribir').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const programa = btn.getAttribute('data-programa');
+                programaInput.value = programa;
+                modal.classList.add('active');
+            });
+        });
+
+        closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+        window.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const programaSeleccionado = formData.get('programa') || 'Seguridad Pública';
+            formData.append('_captcha', 'false');
+            formData.append('_confirmation', 'false');
+            formData.append('_subject', `Nueva solicitud de inscripción - ${programaSeleccionado}`);
+            try {
+                const res = await fetch('https://formsubmit.co/sistemas.redmex@gmail.com', {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (res.ok) {
+                    showToast('✅ ¡Solicitud enviada! Te contactaremos pronto.');
+                    form.reset();
+                    modal.classList.remove('active');
+                } else {
+                    showToast('❌ Error al enviar. Intenta de nuevo.', true);
+                }
+            } catch (error) {
+                showToast('❌ Error de conexión.', true);
+            }
+        });
+    </script>
+    <div id="chatbot-root"></div>
+    <script src="chatbot/chatbot-widget.js"></script>
+</body>
+
+</html>

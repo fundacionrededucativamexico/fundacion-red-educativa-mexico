@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+      <link rel="icon" type="image/svg+xml" href="./assets//img/R_RED.png" />
+    <title>Fundacion Red Educativa México - Educación con Validez Oficial</title>    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1A1F36;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Paleta institucional */
+        :root {
+            --color-primary: #5A0C28;
+            --color-primary-dark: #3E071B;
+            --color-gold: #D4AF37;
+            --color-gold-dark: #B38F2A;
+            --color-gray-bg: #F9F8FC;
+            --color-border: #EDEFF2;
+            --shadow-md: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.25s ease;
+        }
+
+        /* HEADER */
+        .shared-header {
+            position: relative;
+            z-index: 1100;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .top-bar {
+            background-color: var(--color-primary);
+            color: white;
+            font-size: 0.85rem;
+            padding: 0.5rem 0;
+        }
+
+        .top-bar-container, .main-header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar-left span i {
+            margin-right: 8px;
+            color: var(--color-gold);
+        }
+
+        .main-header {
+            background: white;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .logo-img {
+            display: block;
+            height: 48px;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
+        }
+
+        /* Navegación desktop */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: #2D3748;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link i {
+            font-size: 0.75rem;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--color-primary);
+        }
+
+        /* Submenu */
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            min-width: 220px;
+            z-index: 1001;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            overflow: hidden;
+            animation: fadeDown 0.2s ease;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .submenu a:hover {
+            background: #FFF9E8;
+            border-left-color: var(--color-gold);
+            padding-left: 1.8rem;
+        }
+
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: white;
+            border-top: 1px solid var(--color-border);
+            padding: 1rem 0;
+        }
+
+        .mobile-nav-link {
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            color: #2D3748;
+            display: block;
+        }
+
+        @media (max-width: 992px) {
+            .nav-menu { display: none; }
+            .menu-toggle { display: block; }
+        }
+
+        /* Footer */
+        .shared-footer {
+            background: var(--color-primary-dark);
+            color: #ffffff;
+            padding: 3rem 1.5rem 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            color: var(--color-gold);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-logo-img {
+            max-width: 180px;
+            height: auto;
+            margin-bottom: 1rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-link {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--color-gold);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            background: var(--color-gold);
+            color: var(--color-primary-dark);
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: white;
+            color: var(--color-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+
+            .footer-section h3 {
+                font-size: 1rem;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+        .login-container {
+            display: flex;
+            height: 100vh;
+        }
+        .login-left {
+            flex: 1;
+            background: linear-gradient(135deg, #9b2247, #611232);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 2rem;
+        }
+        .login-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: var(--color-bg-primary);
+        }
+        .login-form {
+            width: 100%;
+            max-width: 400px;
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .login-header h1 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--color-border);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+        .login-button {
+            width: 100%;
+            background: var(--color-primary);
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+        .login-button:hover {
+            background: var(--color-primary-dark);
+        }
+        .login-links {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .login-links a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .login-left-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .login-left-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .login-features {
+            list-style: none;
+            padding: 0;
+        }
+        .login-features li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .login-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+            }
+            .login-left {
+                display: none;
+            }
+            .login-right {
+                height: auto;
+                min-height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0;">
+    <header class="shared-header">
+        <div class="top-bar">
+            <div class="top-bar-container">
+                <div class="top-bar-left"><span><i class="fas fa-phone-alt"></i> 800 0440 189</span></div>
+                <div class="top-bar-right"></div>
+            </div>
+        </div>
+        <nav class="main-header">
+            <div class="main-header-container">
+                <a href="index.html" class="logo-link">
+                    <img src="assets/logored.png" alt="Red Educativa México" class="logo-img">
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+                    <li style="position: relative;">
+                        <button class="nav-link" id="btnOfertaDesktop">Oferta Educativa <i class="fas fa-chevron-down"></i></button>
+                        <div id="desktopSubmenu" class="submenu" style="display: none;">
+                            <a href="oferta-educativa.html">Programas Formativos</a>
+                            <a href="acuerdo286.html">Ruta/Sep-286</a>
+                            <a href="carreras-policiales.html">Programas Seguridad Pública</a>
+                            <a href="ingles.html">Certificación de Idiomas</a>
+                        </div>
+                    </li>
+                    <li><a href="sucursales.html" class="nav-link">Sucursales</a></li>
+                    <li><a href="noticias.html" class="nav-link">Noticias</a></li>
+                    <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+                <button class="menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+            </div>
+            <div id="mobileMenuPanel" class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="index.html" class="mobile-nav-link">Inicio</a>
+                    <a href="nosotros.html" class="mobile-nav-link">Nosotros</a>
+                    <button id="mobileOfertaBtn" style="background:none; border:none; width:100%; text-align:left; padding:0.75rem 1.5rem; font-weight:600; display:flex; justify-content:space-between;">
+                        Oferta Educativa <i class="fas fa-chevron-down" id="mobileChevron"></i>
+                    </button>
+                    <div id="mobileSubmenuList" style="display:none; padding-left:1.5rem;">
+                        <a href="oferta-educativa.html">Programas Formativos</a>
+                        <a href="acuerdo286.html">Ruta/Sep-286</a>
+                        <a href="carreras-policiales.html">Seguridad Pública</a>
+                        <a href="ingles.html">Idiomas</a>
+                    </div>
+                    <a href="sucursales.html" class="mobile-nav-link">Sucursales</a>
+                    <a href="noticias.html" class="mobile-nav-link">Noticias</a>
+                    <a href="contacto.html" class="mobile-nav-link">Contacto</a>
+                </nav>
+            </div>
+        </nav>
+    </header>
+
+    <div class="login-container">
+        <div class="login-left">
+            <div class="login-left-content">
+                <h2>Red Educativa México</h2>
+                <p>Plataforma integral de educación con validez oficial SEP</p>
+                <ul class="login-features">
+                    <li>Programas con reconocimiento oficial</li>
+                    <li>Modalidades presencial, en línea e híbrida</li>
+                    <li>Acompañamiento personalizado de tutores</li>
+                    <li>Horarios flexibles para tu comodidad</li>
+                    <li>Becas y apoyos educativos</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="login-right">
+            <div class="login-form">
+                <div class="login-header">
+                    <h1>Inicia Sesión</h1>
+                    <p style="color: var(--color-text-secondary);">Accede a tu plataforma educativa</p>
+                </div>
+
+                <form style="display: flex; flex-direction: column;">
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" placeholder="tu@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+
+                    <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                        <input type="checkbox" id="remember" style="margin-right: 0.5rem;">
+                        <label for="remember" style="margin: 0; font-weight: 400;">Recuerda mi sesión</label>
+                    </div>
+
+                    <button type="submit" class="login-button">Iniciar Sesión</button>
+
+                    <div class="login-links">
+                        <a href="contacto.html">¿Olvidaste tu contraseña?</a>
+                        <span style="color: var(--color-text-secondary); font-size: 0.85rem;">o</span>
+                        <a href="index.html" style="font-weight: 600;">Volver a inicio</a>
+                    </div>
+                </form>
+
+                <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
+                    <p style="color: var(--color-text-secondary); margin-bottom: 1rem;">¿No tienes cuenta?</p>
+                    <a href="contacto.html" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">
+                        Solicita información sobre inscripciones
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="shared-footer">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <img src="assets/logored.png" alt="Fundación Red Educativa" class="footer-logo-img">
+                <p>Excelencia académica con respaldo oficial.</p>
+            </div>
+            <div class="footer-section"><h3>Fundación</h3><p>Plataforma integral de evaluación, acreditación y homologación de programas educativos.</p></div>
+            <div class="footer-section"><h3>Contacto</h3><p><a href="tel:8000440189" class="footer-link"><i class="fas fa-phone"></i> 800 0440 189</a></p><p><a href="mailto:admin@rededucativamexico.org" class="footer-link"><i class="fas fa-envelope"></i> admin@rededucativamexico.org</a></p><div class="social-icons"><a href="https://web.facebook.com/RedEduMex/" class="social-icon"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/rededucativamexico/" class="social-icon"><i class="fab fa-instagram"></i></a><a href="https://www.tiktok.com/@rededucativamex" class="social-icon"><i class="fab fa-tiktok"></i></a><a href="https://x.com/RPre4t" class="social-icon"><i class="fab fa-twitter"></i></a></div></div>
+        </div>
+        <div class="footer-bottom"><p>© 2026 Red Educativa México. Todos los derechos reservados.</p></div>
+    </footer>
+
+    <script>
+        // ----- Submenús -----
+        const btnOferta = document.getElementById('btnOfertaDesktop');
+        const submenu = document.getElementById('desktopSubmenu');
+        if(btnOferta && submenu) {
+            btnOferta.addEventListener('click', (e) => { e.stopPropagation(); submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block'; });
+            document.addEventListener('click', (e) => { if(!btnOferta.contains(e.target) && !submenu.contains(e.target)) submenu.style.display = 'none'; });
+        }
+        const mobileToggle = document.getElementById('mobileMenuToggle');
+        const mobilePanel = document.getElementById('mobileMenuPanel');
+        if(mobileToggle) mobileToggle.addEventListener('click', () => { mobilePanel.style.display = mobilePanel.style.display === 'block' ? 'none' : 'block'; });
+        const mobileOfertaBtn = document.getElementById('mobileOfertaBtn');
+        const mobileSubmenuDiv = document.getElementById('mobileSubmenuList');
+        if(mobileOfertaBtn) mobileOfertaBtn.addEventListener('click', () => { const isVisible = mobileSubmenuDiv.style.display === 'block'; mobileSubmenuDiv.style.display = isVisible ? 'none' : 'block'; document.getElementById('mobileChevron').style.transform = isVisible ? 'rotate(0deg)' : 'rotate(180deg)'; });
+    </script>
+
+    <script src="script.js"></script>
+    <div id="chatbot-root"></div>
+    <script src="chatbot/chatbot-widget.js"></script>
+</body>
+</html>

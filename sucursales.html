@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <link rel="icon" type="image/svg+xml" href="./assets//img/R_RED.png" />
+    <title>Fundacion Red Educativa México - Sucursales</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #5A0C28;
+            --color-primary-dark: #3E071B;
+            --color-primary-light: #8c1d40;
+            --color-gold: #D4AF37;
+            --color-gold-dark: #B38F2A;
+            --color-gold-light: #F0D878;
+            --color-gold-pale: #FDF6E3;
+            --color-gray-bg: #F9F8FC;
+            --color-gray-50: #F8FAFC;
+            --color-border: #EDEFF2;
+            --color-text: #1A1F36;
+            --color-text-soft: #4B5563;
+            --color-text-muted: #6B7280;
+            --color-white: #ffffff;
+            --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 24px 48px -12px rgba(0, 0, 0, 0.12);
+            --shadow-card: 0 15px 35px rgba(0, 0, 0, 0.04);
+            --shadow-card-hover: 0 30px 55px rgba(90, 12, 40, 0.1);
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 28px;
+            --radius-xl: 36px;
+            --radius-full: 9999px;
+            --transition: all 0.25s ease;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: var(--color-text);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── HEADER ── */
+        .shared-header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            transition: var(--transition);
+        }
+
+        .top-bar {
+            background-color: var(--color-primary);
+            color: white;
+            font-size: 0.85rem;
+            padding: 0.5rem 0;
+        }
+
+        .top-bar-container,
+        .main-header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar-left span i {
+            margin-right: 8px;
+            color: var(--color-gold);
+        }
+
+        .main-header {
+            background: transparent;
+            padding: 0.2rem 0;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+        .logo-link:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-img {
+            display: block;
+            height: 46px;
+            width: auto;
+            max-width: 190px;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: #2D3748;
+            transition: var(--transition);
+            font-size: 0.93rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.45rem 0.8rem;
+            border-radius: var(--radius-full);
+        }
+
+        .nav-link i {
+            font-size: 0.7rem;
+            transition: transform 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--color-primary);
+            background: rgba(90, 12, 40, 0.04);
+        }
+
+        .nav-link.active {
+            color: var(--color-primary);
+            background: rgba(90, 12, 40, 0.06);
+            font-weight: 700;
+        }
+
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            min-width: 240px;
+            z-index: 1001;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            overflow: hidden;
+            animation: fadeDown 0.2s ease;
+            padding: 6px;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 0.7rem 1.2rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+            border-radius: 8px;
+            margin: 2px 0;
+        }
+
+        .submenu a:hover {
+            background: #FFF9E8;
+            border-left-color: var(--color-gold);
+            padding-left: 1.5rem;
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+            background: rgba(90, 12, 40, 0.04);
+            border: 1px solid rgba(90, 12, 40, 0.08);
+            font-size: 1.3rem;
+            color: var(--color-primary);
+            cursor: pointer;
+            padding: 0.5rem 0.7rem;
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .mobile-menu {
+            display: none;
+            background: white;
+            border-top: 1px solid var(--color-border);
+            padding: 0.8rem 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .mobile-nav-link {
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            color: #2D3748;
+            display: block;
+            border-radius: 8px;
+            margin: 2px 0.8rem;
+            transition: var(--transition);
+        }
+        .mobile-nav-link:hover,
+        .mobile-nav-link.active {
+            background: rgba(90, 12, 40, 0.04);
+            color: var(--color-primary);
+        }
+
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* ── HERO ── */
+        .hero-sucursales {
+            background: linear-gradient(135deg, #3E071B 0%, #5A0C28 40%, #7B1A3D 100%);
+            color: white;
+            padding: 75px 20px 85px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-blob,
+        .hero-bg-blob2 {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            pointer-events: none;
+        }
+
+        .hero-bg-blob {
+            width: 450px;
+            height: 450px;
+            background: rgba(212, 175, 55, 0.08);
+            top: -120px;
+            right: -100px;
+            animation: floatBlob 14s ease-in-out infinite;
+        }
+
+        .hero-bg-blob2 {
+            width: 380px;
+            height: 380px;
+            background: rgba(255, 255, 255, 0.04);
+            bottom: -100px;
+            left: -80px;
+            animation: floatBlob2 16s ease-in-out infinite;
+        }
+
+        @keyframes floatBlob {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-25px, 20px) scale(1.06); }
+        }
+
+        @keyframes floatBlob2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, -20px) scale(1.05); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2rem, 7vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-content h1::after {
+            content: '';
+            display: block;
+            width: 55px;
+            height: 4px;
+            background: var(--color-gold);
+            margin: 14px auto 0;
+            border-radius: 2px;
+            opacity: 0.8;
+        }
+
+        .hero-content p {
+            font-size: clamp(0.95rem, 3.5vw, 1.15rem);
+            max-width: 750px;
+            margin: 20px auto 0;
+            opacity: 0.9;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* ── CONTENIDO PRINCIPAL ── */
+        .sucursales-section {
+            padding: 70px 20px 80px;
+            background: linear-gradient(180deg, #fcfcfd 0%, #f7f6fa 100%);
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+
+        /* Buscador */
+        .search-box {
+            margin: 0 auto 55px;
+            text-align: center;
+            max-width: 680px;
+        }
+
+        .search-wrapper {
+            background: white;
+            border-radius: 60px;
+            padding: 6px 6px 6px 22px;
+            display: flex;
+            align-items: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(212, 175, 55, 0.18);
+            transition: var(--transition-smooth);
+        }
+
+        .search-wrapper:focus-within {
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.08), var(--shadow-lg);
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .search-wrapper i {
+            color: var(--color-primary-light);
+            font-size: 1rem;
+            opacity: 0.65;
+            flex-shrink: 0;
+        }
+
+        .search-wrapper input {
+            flex: 1;
+            padding: 16px 0 16px 12px;
+            border: none;
+            outline: none;
+            font-size: 0.98rem;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .search-wrapper input::placeholder {
+            color: #B0B7C3;
+            font-weight: 400;
+        }
+
+        .search-wrapper button {
+            background: linear-gradient(135deg, var(--color-gold) 0%, #C99B2E 100%);
+            border: none;
+            padding: 14px 26px;
+            border-radius: 50px;
+            color: var(--color-primary-dark);
+            font-weight: 700;
+            font-size: 0.93rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 18px rgba(212, 175, 55, 0.25);
+            white-space: nowrap;
+        }
+
+        .search-wrapper button:hover {
+            background: linear-gradient(135deg, #C99B2E 0%, #B38F2A 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 26px rgba(212, 175, 55, 0.35);
+        }
+
+        .search-info {
+            margin-top: 16px;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .search-info i {
+            color: var(--color-gold);
+            font-size: 0.85rem;
+        }
+
+        /* Listado de sucursales */
+        #sucursalesContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .sucursal-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sucursal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-card-hover);
+            border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        /* Cabecera de la tarjeta */
+        .card-header {
+            background: linear-gradient(105deg, #5A0C28 0%, #7B1A3D 100%);
+            padding: 20px 28px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .icon-circle {
+            width: 46px;
+            height: 46px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .icon-circle i {
+            font-size: 1.3rem;
+            color: var(--color-gold-light);
+        }
+
+        .card-header .header-text {
+            flex: 1;
+        }
+
+        .badge-sucursal {
+            background: var(--color-gold);
+            color: var(--color-primary-dark);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .card-header h2 {
+            margin: 0;
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Cuerpo de la tarjeta */
+        .card-body {
+            padding: 28px 28px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            width: 34px;
+            height: 34px;
+            background: rgba(140, 29, 64, 0.08);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-icon i {
+            color: var(--color-primary-light);
+            font-size: 0.9rem;
+        }
+
+        .info-item .info-text h4 {
+            margin: 0 0 3px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .info-item .info-text p {
+            margin: 0;
+            color: var(--color-text-soft);
+            font-size: 0.92rem;
+            line-height: 1.55;
+            word-break: break-word;
+            font-weight: 500;
+        }
+
+        .map-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .map-frame {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.05);
+            height: 220px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            background: #f0f0f0;
+            flex: 1;
+        }
+
+        .map-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .no-mapa {
+            height: 100%;
+            min-height: 120px;
+            padding: 20px;
+            background: #f9f9fb;
+            border-radius: var(--radius-md);
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 1px dashed rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+        }
+
+        /* Botones de acción */
+        .buttons-row {
+            display: flex;
+            gap: 12px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            flex-wrap: wrap;
+        }
+
+        .btn-maps,
+        .btn-call,
+        .btn-email {
+            padding: 12px 22px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
+            flex: 1 1 auto;
+            min-width: 110px;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-maps {
+            background: var(--color-gold);
+            color: var(--color-primary-dark);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+        }
+        .btn-maps:hover {
+            background: #C99B2E;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-call {
+            background: var(--color-primary);
+            color: white;
+        }
+        .btn-call:hover {
+            background: #7B1A3D;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(90, 12, 40, 0.25);
+        }
+
+        .btn-email {
+            background: transparent;
+            color: var(--color-primary);
+            border: 1.5px solid var(--color-primary);
+        }
+        .btn-email:hover {
+            background: rgba(90, 12, 40, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Cajas informativas */
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .info-box {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 24px 28px;
+            box-shadow: var(--shadow-xs);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: var(--transition);
+        }
+
+        .info-box:hover {
+            box-shadow: var(--shadow-sm);
+            border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        .info-box-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(212, 175, 55, 0.12);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-box-icon i {
+            font-size: 1.4rem;
+            color: var(--color-gold-dark);
+        }
+
+        .info-box h4 {
+            margin: 0 0 5px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .info-box p {
+            margin: 0;
+            color: var(--color-text-muted);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        /* ── FOOTER ── */
+        .shared-footer {
+            background: var(--color-primary-dark);
+            color: #ffffff;
+            padding: 3rem 1.5rem 1.5rem;
+            position: relative;
+        }
+
+        .shared-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+            opacity: 0.5;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section h3 {
+            color: var(--color-gold);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+        }
+
+        .footer-logo-img {
+            max-width: 170px;
+            height: auto;
+            margin-bottom: 1rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-link {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .footer-link:hover {
+            color: var(--color-gold);
+            padding-left: 4px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            background: var(--color-gold);
+            color: var(--color-primary-dark);
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .social-icon:hover {
+            background: white;
+            color: var(--color-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.25);
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .hero-sucursales {
+                padding: 55px 20px 65px;
+            }
+
+            .card-header {
+                padding: 18px 20px;
+            }
+            .card-header h2 {
+                font-size: 1.3rem;
+            }
+
+            .card-body {
+                padding: 20px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .map-frame {
+                height: 200px;
+            }
+
+            .search-wrapper {
+                padding: 5px 5px 5px 16px;
+            }
+            .search-wrapper input {
+                padding: 14px 0 14px 8px;
+                font-size: 0.9rem;
+            }
+            .search-wrapper button {
+                padding: 12px 18px;
+                font-size: 0.85rem;
+                gap: 4px;
+            }
+
+            .buttons-row {
+                flex-direction: column;
+            }
+            .btn-maps,
+            .btn-call,
+            .btn-email {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .info-boxes {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+
+            .footer-section h3 {
+                font-size: 1rem;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .search-wrapper button {
+                display: none;
+            }
+            .card-header h2 {
+                font-size: 1.15rem;
+            }
+            .icon-circle {
+                width: 38px;
+                height: 38px;
+            }
+            .icon-circle i {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="shared-header">
+        <div class="top-bar">
+            <div class="top-bar-container">
+                <div class="top-bar-left"><span><i class="fas fa-phone-alt"></i> 800 0440 189</span></div>
+                <div class="top-bar-right"></div>
+            </div>
+        </div>
+        <nav class="main-header">
+            <div class="main-header-container">
+                <a href="index.html" class="logo-link"><img src="assets/logored.png" alt="Red Educativa México" class="logo-img"></a>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+                    <li style="position: relative;"><button class="nav-link" id="btnOfertaDesktop">Oferta Educativa <i class="fas fa-chevron-down"></i></button>
+                        <div id="desktopSubmenu" class="submenu" style="display: none;">
+                            <a href="oferta-educativa.html">Programas Formativos</a>
+                            <a href="acuerdo286.html">Ruta/Sep-286</a>
+                            <a href="carreras-policiales.html">Programas Seguridad Pública</a>
+                            <a href="ingles.html">Certificación de Idiomas</a>
+                        </div>
+                    </li>
+                    <li><a href="sucursales.html" class="nav-link active">Sucursales</a></li>
+                    <li><a href="noticias.html" class="nav-link">Noticias</a></li>
+                    <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+                <button class="menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+            </div>
+            <div id="mobileMenuPanel" class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="index.html" class="mobile-nav-link">Inicio</a>
+                    <a href="nosotros.html" class="mobile-nav-link">Nosotros</a>
+                    <button id="mobileOfertaBtn" style="background:none; border:none; width:100%; text-align:left; padding:0.7rem 1.5rem; font-weight:600; display:flex; justify-content:space-between; font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #2D3748;">Oferta Educativa <i class="fas fa-chevron-down" id="mobileChevron" style="transition: transform 0.2s;"></i></button>
+                    <div id="mobileSubmenuList" style="display:none; padding-left:1.5rem; background: rgba(90,12,40,0.02); border-radius: 8px; margin: 0 0.8rem;">
+                        <a href="oferta-educativa.html" class="mobile-nav-link">Programas Formativos</a>
+                        <a href="acuerdo286.html" class="mobile-nav-link">Ruta/Sep-286</a>
+                        <a href="carreras-policiales.html" class="mobile-nav-link">Seguridad Pública</a>
+                        <a href="ingles.html" class="mobile-nav-link">Idiomas</a>
+                    </div>
+                    <a href="sucursales.html" class="mobile-nav-link active">Sucursales</a>
+                    <a href="noticias.html" class="mobile-nav-link">Noticias</a>
+                    <a href="contacto.html" class="mobile-nav-link">Contacto</a>
+                </nav>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-sucursales">
+            <div class="hero-bg-blob"></div>
+            <div class="hero-bg-blob2"></div>
+            <div class="hero-content">
+                <h1>Nuestras sucursales</h1>
+                <p>Contamos con una red de sucursales estratégicamente ubicadas para brindarte atención personalizada y acompañamiento en tu camino educativo.</p>
+            </div>
+        </section>
+
+        <section class="sucursales-section">
+            <div class="container">
+                <div class="search-box">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Buscar por nombre o dirección...">
+                        <button id="searchButton"><i class="fas fa-search"></i> Buscar</button>
+                    </div>
+                    <div class="search-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Encuentra tu sucursal más cercana</span>
+                    </div>
+                </div>
+
+                <div id="sucursalesContainer"></div>
+
+                <div class="info-boxes">
+                    <div class="info-box">
+                        <div class="info-box-icon"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <h4>Horarios de atención</h4>
+                            <p>Todas nuestras sucursales atienden de lunes a viernes. Algunas cuentan con horario extendido los sábados.</p>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-box-icon"><i class="fas fa-calendar-check"></i></div>
+                        <div>
+                            <h4>Agendar cita</h4>
+                            <p>Te recomendamos agendar una cita previa para recibir atención personalizada y evitar tiempos de espera.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="shared-footer">
+        <div class="footer-grid">
+            <div class="footer-section"><img src="assets/logored.png" alt="Fundación Red Educativa México" class="footer-logo-img">
+                <p>Excelencia académica con respaldo oficial.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Fundación Red Educativa México</h3>
+                <p>Plataforma integral de evaluación, acreditación y homologación de programas educativos a nivel medio superior.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p><a href="tel:8000440189" class="footer-link"><i class="fas fa-phone"></i> 800 0440 189</a></p>
+                <p><a href="mailto:admin@rededucativamexico.org" class="footer-link"><i class="fas fa-envelope"></i> admin@rededucativamexico.org</a></p>
+                <div class="social-icons"><a href="https://web.facebook.com/RedEduMex/" class="social-icon"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/rededucativamexico/" class="social-icon"><i class="fab fa-instagram"></i></a><a href="https://www.tiktok.com/@rededucativamex" class="social-icon"><i class="fab fa-tiktok"></i></a><a href="https://x.com/RPre4t" class="social-icon"><i class="fab fa-twitter"></i></a></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Red Educativa México. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        const sucursalesData = [
+            { id: 1, nombre: "Ciudad de México - Insurgentes", direccion: "Av. Insurgentes Sur 1006, Insurgentes San Borja, Benito Juárez, 03100 Ciudad de México, CDMX", telefono: "800 0440 189", email: "admin@rededucativamexico.org", horario: "Lun-Vie: 9:00 - 18:00", mapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.99799345793!2d-99.22906052419621!3d18.931482956492346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cddfb650be3997%3A0x9dd675969ba43e0f!2sUniversidad%20IMPE!5e0!3m2!1ses-419!2smx!4v1775060284960!5m2!1ses-419!2smx" },
+            { id: 2, nombre: "Cuernavaca - Morelos", direccion: "Av Teopanzolco 101, Teopanzolco, 62283 Cuernavaca, Mor.", telefono: "800 0440 189", email: "admin@rededucativamexico.org", horario: "Lun-Vie: 9:00 - 18:00", mapa: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d482999.754823665!2d-99.23670900000002!3d18.956361!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cdde2a85e2657b%3A0x49e80332cb30641a!2sAv.%20Domingo%20Diez%201520%2C%20Lomas%20de%20la%20Selva%2C%2062270%20Cuernavaca%2C%20Mor.%2C%20M%C3%A9xico!5e0!3m2!1ses-419!2sus!4v1770739904005!5m2!1ses-419!2sus" },
+            { id: 3, nombre: "Chihuahua - Centro", direccion: "Calle Ojinaga 300, Zona Centro, 31000 Chihuahua, Chih.", telefono: "800 0440 189", email: "admin@rededucativamexico.org", horario: "Próximamente", mapa: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d448227.63925193803!2d-106.073984!3d28.636402!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86ea435240c5abf9%3A0xe460b8f29fb4dbfd!2sCalle%20Ojinaga%20300%2C%20Zona%20Centro%2C%2031000%20Chihuahua%2C%20Chih.%2C%20M%C3%A9xico!5e0!3m2!1ses-419!2sus!4v1770740081184!5m2!1ses-419!2sus" },
+            { id: 4, nombre: "Querétaro", direccion: "Santiago de Querétaro, Qro.", telefono: "561 123 0650", email: "admin@rededucativamexico.org", horario: "Lun-Vie: 9:00 - 18:00", mapa: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d477990.78968339774!2d-100.425238!3d20.616501!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d35b8fdc5b9255%3A0x97b094aa561b832f!2sSantiago%20de%20Quer%C3%A9taro%2C%20Qro.%2C%20M%C3%A9xico!5e0!3m2!1ses-419!2sus!4v1770740155363!5m2!1ses-419!2sus" },
+            { id: 5, nombre: "Monterrey - Apodaca", direccion: "Plaza El Molino, Local B144, Av. Salinas de Gordari No. 801, Col. Apodaca, Nuevo León", telefono: "81 4006 9053", email: "admin@rededucativamexico.org", horario: "Lun-Vie: 9:00 - 18:00", mapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1082.5913071515845!2d-100.1928452503611!3d25.772343300032666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662eb8b4d960691%3A0xec6ea5c9c4193799!2sPlaza%20El%20Molino!5e1!3m2!1ses-419!2smx!4v1772214862137!5m2!1ses-419!2smx" },
+            { id: 6, nombre: "Jalisco - Zapopan", direccion: "Atemajac del Valle, Zapopan, Jalisco, 45120", telefono: "800 0440 189", email: "admin@rededucativamexico.org", horario: "Lun-Vie: 9:00 - 18:00", mapa: null },
+            { id: 7, nombre: "Sonora - Cananea", direccion: "Primero de Junio No. 1, Santa Teresa, Cananea, Sonora", telefono: "800 0440 189", email: "admin@rededucativamexico.org", horario: "Lun-Vie: 9:00 - 18:00", mapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d45965.16455537552!2d-110.26098769240643!3d31.004696986517807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86d0e164ddb81a5f%3A0x1b5da2ff2f213577!2sPrimero%20de%20Junio%201%2C%20Santa%20Teresa%2C%2084620%20Heroica%20Cdad.%20de%20Cananea%2C%20Son.!5e0!3m2!1ses-419!2smx!4v1772215045408!5m2!1ses-419!2smx" },
+            { id: 8, nombre: "Colima - Manzanillo", direccion: "Calle María Pérez Alfaro No. 435, Obispo Méndez Arceo, Manzanillo, Colima", telefono: "800 0440 189", email: "admin@rededucativamexico.org", horario: "Lun-Vie: 9:00 - 18:00", mapa: null }
+        ];
+
+        function escapeHtml(str) {
+            if (!str) return "";
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        function renderSucursales(filterTerm = "") {
+            const container = document.getElementById("sucursalesContainer");
+            if (!container) return;
+            const filtered = sucursalesData.filter(s =>
+                s.nombre.toLowerCase().includes(filterTerm.toLowerCase()) ||
+                s.direccion.toLowerCase().includes(filterTerm.toLowerCase())
+            );
+            if (filtered.length === 0) {
+                container.innerHTML = `<div style="text-align: center; padding: 70px 20px; background: white; border-radius: 24px; box-shadow: var(--shadow-card);"><i class="fas fa-map-marker-alt" style="font-size: 3rem; color: #D4AF37; margin-bottom: 18px; display: block;"></i><h3 style="font-size: 1.5rem; color: #5A0C28; margin-bottom: 8px;">No se encontraron sucursales</h3><p style="color: #6b7280;">Intenta con otros términos de búsqueda</p></div>`;
+                return;
+            }
+            let html = "";
+            filtered.forEach(sucursal => {
+                const tieneMapa = sucursal.mapa && sucursal.mapa.trim() !== "";
+                html += `
+                <div class="sucursal-card">
+                    <div class="card-header">
+                        <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="header-text">
+                            <div class="badge-sucursal">SUCURSAL</div>
+                            <h2>${escapeHtml(sucursal.nombre)}</h2>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="info-grid">
+                            <div class="info-list">
+                                <div class="info-item">
+                                    <div class="info-icon"><i class="fas fa-map-pin"></i></div>
+                                    <div class="info-text"><h4>Dirección</h4><p>${escapeHtml(sucursal.direccion)}</p></div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-icon"><i class="fas fa-phone"></i></div>
+                                    <div class="info-text"><h4>Teléfono</h4><p>${escapeHtml(sucursal.telefono)}</p></div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                                    <div class="info-text"><h4>Email</h4><p>${escapeHtml(sucursal.email)}</p></div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-icon"><i class="fas fa-clock"></i></div>
+                                    <div class="info-text"><h4>Horario</h4><p>${escapeHtml(sucursal.horario)}</p></div>
+                                </div>
+                            </div>
+                            <div class="map-container">
+                                ${tieneMapa ? `<div class="map-frame"><iframe src="${sucursal.mapa}" loading="lazy" title="Mapa de ${escapeHtml(sucursal.nombre)}" allowFullScreen></iframe></div>` : `<div class="no-mapa"><i class="fas fa-info-circle"></i><span>Mapa no disponible</span></div>`}
+                            </div>
+                        </div>
+                        <div class="buttons-row">
+                            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(sucursal.direccion)}" target="_blank" rel="noopener noreferrer" class="btn-maps"><i class="fas fa-directions"></i> Ver en Maps</a>
+                            <a href="tel:${sucursal.telefono.replace(/\s/g, '')}" class="btn-call"><i class="fas fa-phone"></i> Llamar</a>
+                            <a href="mailto:${sucursal.email}" class="btn-email"><i class="fas fa-envelope"></i> Email</a>
+                        </div>
+                    </div>
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        const searchInput = document.getElementById("searchInput");
+        const searchButton = document.getElementById("searchButton");
+        if (searchInput) {
+            searchInput.addEventListener("input", (e) => renderSucursales(e.target.value));
+            if (searchButton) searchButton.addEventListener("click", () => renderSucursales(searchInput.value));
+        }
+        renderSucursales("");
+
+        // Menús
+        const btnOferta = document.getElementById('btnOfertaDesktop');
+        const submenu = document.getElementById('desktopSubmenu');
+        if (btnOferta && submenu) {
+            btnOferta.addEventListener('click', (e) => { e.stopPropagation(); submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block'; });
+            document.addEventListener('click', (e) => { if (!btnOferta.contains(e.target) && !submenu.contains(e.target)) submenu.style.display = 'none'; });
+        }
+        const mobileToggle = document.getElementById('mobileMenuToggle');
+        const mobilePanel = document.getElementById('mobileMenuPanel');
+        if (mobileToggle) mobileToggle.addEventListener('click', () => { mobilePanel.style.display = mobilePanel.style.display === 'block' ? 'none' : 'block'; });
+        const mobileOfertaBtn = document.getElementById('mobileOfertaBtn');
+        const mobileSubmenuDiv = document.getElementById('mobileSubmenuList');
+        const mobileChevron = document.getElementById('mobileChevron');
+        if (mobileOfertaBtn && mobileSubmenuDiv) {
+            mobileOfertaBtn.addEventListener('click', () => {
+                const isVisible = mobileSubmenuDiv.style.display === 'block';
+                mobileSubmenuDiv.style.display = isVisible ? 'none' : 'block';
+                if (mobileChevron) mobileChevron.style.transform = isVisible ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+        }
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 992 && mobilePanel) mobilePanel.style.display = 'none';
+            if (submenu) submenu.style.display = 'none';
+        });
+    </script>
+    <div id="chatbot-root"></div>
+    <script src="chatbot/chatbot-widget.js"></script>
+</body>
+</html>

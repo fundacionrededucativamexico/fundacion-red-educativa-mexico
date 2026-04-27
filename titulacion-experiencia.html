@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+      <link rel="icon" type="image/svg+xml" href="./assets//img/R_RED.png" />
+    <title>Fundacion Red Educativa México - Educación con Validez Oficial</title>    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1A1F36;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --color-primary: #5A0C28;
+            --color-primary-dark: #3E071B;
+            --color-gold: #D4AF37;
+            --color-gray-bg: #F9F8FC;
+            --color-border: #EDEFF2;
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.25s ease;
+        }
+
+        /* Header (idéntico al home) */
+        .shared-header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1100;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .top-bar {
+            background-color: var(--color-primary);
+            color: white;
+            font-size: 0.85rem;
+            padding: 0.5rem 0;
+        }
+
+        .top-bar-container,
+        .main-header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar-left span i {
+            margin-right: 8px;
+            color: var(--color-gold);
+        }
+
+        .main-header {
+            background: white;
+            padding: 0.8rem 0;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .logo-img {
+            display: block;
+            height: 48px;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: #2D3748;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link i {
+            font-size: 0.75rem;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-primary);
+        }
+
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            min-width: 220px;
+            z-index: 1001;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            overflow: hidden;
+            animation: fadeDown 0.2s ease;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .submenu a:hover {
+            background: #FFF9E8;
+            border-left-color: var(--color-gold);
+            padding-left: 1.8rem;
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: white;
+            border-top: 1px solid var(--color-border);
+            padding: 1rem 0;
+        }
+
+        .mobile-nav-link {
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            color: #2D3748;
+            display: block;
+        }
+
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Estilos de detalle */
+        .hero-detalle {
+            background: linear-gradient(135deg, #5A0C28, #8c1d40);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            top: -150px;
+            right: -150px;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+        .hero-bg-blob2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -100px;
+            filter: blur(50px);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        .section-content {
+            padding: 60px 20px;
+            background: #fafafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: #fafafc;
+            padding: 25px;
+            border-radius: 24px;
+            text-align: center;
+        }
+
+        .feature-card i {
+            font-size: 2rem;
+            color: var(--color-gold);
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: var(--color-primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .info-card {
+            background: #fafafc;
+            padding: 25px;
+            border-radius: 24px;
+            margin-bottom: 30px;
+        }
+
+        .info-card h3 {
+            color: var(--color-primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .badge-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .badge-list li {
+            margin-bottom: 12px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .badge-list li i {
+            color: var(--color-gold);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .requisitos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .requisito-item {
+            background: white;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 50px;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        /* Estilos para la lista de carreras (badges) */
+        .carreras-badge-container {
+            background: #fafafc;
+            border-radius: 28px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .carreras-badge-container h3 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--color-primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .badge-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .badge-carrera {
+            background: white;
+            border: 1px solid var(--color-gold);
+            color: var(--color-primary);
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: default;
+        }
+
+        .badge-carrera:hover {
+            background: var(--color-gold);
+            color: var(--color-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Botón principal */
+        .btn-registro-principal {
+            background: var(--color-gold);
+            color: var(--color-primary-dark);
+            padding: 18px 40px;
+            border-radius: 60px;
+            border: none;
+            font-weight: 800;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto 0;
+            display: block;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-registro-principal:hover {
+            background: #C99B2E;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.2s, opacity 0.2s;
+        }
+
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-container {
+            background: white;
+            border-radius: 32px;
+            max-width: 500px;
+            width: 90%;
+            padding: 2rem;
+            position: relative;
+            border-top: 6px solid var(--color-gold);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .modal-close:hover {
+            color: var(--color-primary);
+        }
+
+        .modal-container h3 {
+            color: var(--color-primary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-inscripcion input,
+        .form-inscripcion select {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            margin-bottom: 1.2rem;
+            border: 1px solid var(--color-border);
+            border-radius: 60px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .form-inscripcion input:focus,
+        .form-inscripcion select:focus {
+            border-color: var(--color-gold);
+        }
+
+        .form-inscripcion button {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 0.9rem;
+            width: 100%;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .form-inscripcion button:hover {
+            background: var(--color-primary-dark);
+        }
+
+        .toast-modal {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: white;
+            border-radius: 60px;
+            padding: 1rem 2rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 2100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border-left: 6px solid var(--color-gold);
+            font-weight: 500;
+        }
+
+        .toast-modal.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .toast-modal.success {
+            border-left-color: #2e7d32;
+        }
+
+        .toast-modal.error {
+            border-left-color: #c62828;
+        }
+
+        .toast-modal i {
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        .shared-footer {
+            background: var(--color-primary-dark);
+            color: #ffffff;
+            padding: 3rem 1.5rem 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            color: var(--color-gold);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-logo-img {
+            max-width: 180px;
+            height: auto;
+            margin-bottom: 1rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-link {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--color-gold);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            background: var(--color-gold);
+            color: var(--color-primary-dark);
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: white;
+            color: var(--color-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .chat-flotante {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--color-primary);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            z-index: 1000;
+            text-decoration: none;
+        }
+
+        .chat-flotante:hover {
+            background: var(--color-gold);
+            color: var(--color-primary);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .hero-detalle {
+                padding: 60px 20px;
+            }
+
+            .badge-carrera {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+
+            .footer-section h3 {
+                font-size: 1rem;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="shared-header">
+        <div class="top-bar">
+            <div class="top-bar-container">
+                <div class="top-bar-left"><span><i class="fas fa-phone-alt"></i> 800 0440 189</span></div>
+                <div class="top-bar-right"></div>
+            </div>
+        </div>
+        <nav class="main-header">
+            <div class="main-header-container"><a href="index.html" class="logo-link"><img src="assets/logored.png"
+                        alt="Red Educativa México" class="logo-img"></a>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+                    <li style="position: relative;"><button class="nav-link" id="btnOfertaDesktop">Oferta Educativa <i
+                                class="fas fa-chevron-down"></i></button>
+                        <div id="desktopSubmenu" class="submenu" style="display: none;"><a
+                                href="oferta-educativa.html">Programas Formativos</a><a
+                                href="acuerdo286.html">Ruta/Sep-286</a><a href="carreras-policiales.html">Seguridad
+                                Pública</a><a href="ingles.html">Idiomas</a></div>
+                    </li>
+                    <li><a href="sucursales.html" class="nav-link">Sucursales</a></li>
+                    <li><a href="noticias.html" class="nav-link">Noticias</a></li>
+                    <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+                <button class="menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+            </div>
+            <div id="mobileMenuPanel" class="mobile-menu">
+                <nav class="mobile-nav"><a href="index.html" class="mobile-nav-link">Inicio</a><a href="nosotros.html"
+                        class="mobile-nav-link">Nosotros</a><button id="mobileOfertaBtn"
+                        style="background:none; border:none; width:100%; text-align:left; padding:0.75rem 1.5rem; font-weight:600; display:flex; justify-content:space-between;">Oferta
+                        Educativa <i class="fas fa-chevron-down" id="mobileChevron"></i></button>
+                    <div id="mobileSubmenuList" style="display:none; padding-left:1.5rem;"><a
+                            href="oferta-educativa.html" class="mobile-nav-link">Programas Formativos</a><a
+                            href="acuerdo286.html" class="mobile-nav-link">Ruta/Sep-286</a><a href="carreras-policiales.html" class="mobile-nav-link">Seguridad
+                            Pública</a><a href="ingles.html" class="mobile-nav-link">Idiomas</a></div><a href="sucursales.html"
+                        class="mobile-nav-link">Sucursales</a><a href="noticias.html"
+                        class="mobile-nav-link">Noticias</a><a href="contacto.html" class="mobile-nav-link">Contacto</a>
+                </nav>
+            </div>
+        </nav>
+    </header>
+
+    <a href="acuerdo286.html"
+        style="position: fixed; top: 120px; left: 20px; z-index: 999; display: inline-flex; align-items: center; gap: 8px; background-color: rgba(90,12,40,0.9); color: white; padding: 8px 20px; border-radius: 40px; text-decoration: none; font-size: 1rem; font-weight: 600; backdrop-filter: blur(8px); border: 1px solid #D4AF37; transition: all 0.3s ease;"><i
+            class="fas fa-arrow-left"></i> Volver a acuerdo 286</a>
+
+    <section class="hero-detalle">
+        <div class="hero-bg-blob"></div>
+        <div class="hero-bg-blob2"></div>
+        <div class="hero-content">
+            <h1>Titulación por Experiencia Laboral</h1>
+            <p>Programa basado en el Acuerdo 286 para titularte con tu experiencia laboral, en modalidad virtual o
+                híbrida.</p>
+        </div>
+    </section>
+
+    <section class="section-content">
+        <div class="container">
+            <div class="cards-grid">
+                <div class="feature-card"><i class="fas fa-laptop"></i>
+                    <h3>Modalidad</h3>
+                    <p>100% virtual con acompañamiento docente.</p>
+                </div>
+                <div class="feature-card"><i class="fas fa-project-diagram"></i>
+                    <h3>Aprendizaje</h3>
+                    <p>Basado en proyectos (caso práctico). Fortalecimiento teórico vinculado a la experiencia
+                        profesional.</p>
+                </div>
+                <div class="feature-card"><i class="fas fa-clock"></i>
+                    <h3>Duración</h3>
+                    <p>10 semanas: 8 semanas de taller de caso práctico + 2 semanas de taller de exposición profesional.
+                    </p>
+                </div>
+            </div>
+            <div style="text-align:center; margin-bottom:40px;"><img src="./assets/img/img5.JPG"
+                    alt="Titulación por experiencia"
+                    style="max-width:100%; max-height:300px; border-radius:24px; box-shadow:0 15px 30px rgba(0,0,0,0.1);">
+            </div>
+            <div class="info-card">
+                <h3>📘 ¿Cómo se aprende?</h3>
+                <ul class="badge-list">
+                    <li><i class="fas fa-check-circle"></i> Sesión virtual de 2 horas por semana.</li>
+                    <li><i class="fas fa-check-circle"></i> Participación activa para recibir retroalimentación.</li>
+                    <li><i class="fas fa-check-circle"></i> Trabajo semanal orientado a la construcción del caso
+                        práctico.</li>
+                    <li><i class="fas fa-check-circle"></i> Acompañamiento académico durante todo el proceso.</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>🖥️ Plataforma educativa "u.impevirtual.mx"</h3>
+                <p>Acceso con usuario y contraseña que permite: consultar materiales, conectarse a sesiones en vivo,
+                    cargar avances semanales, recibir retroalimentación, acceder a biblioteca virtual y
+                    autoevaluaciones.</p>
+            </div>
+            <div class="info-card">
+                <h3>Áreas disponibles</h3>
+                <ul class="badge-list">
+                    <li><i class="fas fa-check-circle"></i> Ingeniería Industrial</li>
+                    <li><i class="fas fa-check-circle"></i> Derecho</li>
+                    <li><i class="fas fa-check-circle"></i> Contaduría</li>
+                    <li><i class="fas fa-check-circle"></i> Educación Preescolar</li>
+                    <li><i class="fas fa-check-circle"></i> Ingeniería Computacional</li>
+                    <li><i class="fas fa-check-circle"></i> Ciencias de la Comunicación</li>
+                    <li><i class="fas fa-check-circle"></i> Mercadotecnia</li>
+                    <li><i class="fas fa-check-circle"></i> Ciencias Políticas y Administración Pública</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>Evaluación y Cierre del Proceso</h3>
+                <p><strong>Requisitos para pase a evaluación:</strong> Documentos completos, pagos cubiertos, caso
+                    práctico finalizado.</p>
+                <p><strong>Evaluaciones oficiales:</strong> Teórica (escrita/digital) y Oral (defensa del caso
+                    práctico).</p>
+            </div>
+            <div class="info-card">
+                <h3>✅ Requisitos para aplicar</h3>
+                <div class="requisitos-grid">
+                    <div class="requisito-item"><i class="fas fa-check-circle" style="color:#8c1d40;"></i> Mayor a 25
+                        años</div>
+                    <div class="requisito-item"><i class="fas fa-check-circle" style="color:#8c1d40;"></i> Mínimo 3 años
+                        de experiencia</div>
+                    <div class="requisito-item"><i class="fas fa-check-circle" style="color:#8c1d40;"></i> Portafolio de
+                        evidencias</div>
+                    <div class="requisito-item"><i class="fas fa-check-circle" style="color:#8c1d40;"></i> Certificado
+                        de bachillerato</div>
+                </div>
+            </div>
+
+            <!-- Sección visual de todas las carreras (badges) -->
+            <div class="carreras-badge-container">
+                <h3><i class="fas fa-graduation-cap" style="color: var(--color-gold);"></i> Áreas de titulación
+                    disponibles</h3>
+                <div class="badge-grid" id="carrerasBadgesGrid"></div>
+            </div>
+
+            <!-- Botón único de registro -->
+            <button class="btn-registro-principal" id="openRegistroBtn"><i class="fas fa-pencil-alt"></i> Solicitar
+                información / Registrarme</button>
+        </div>
+    </section>
+
+    <footer class="shared-footer">
+        <div class="footer-grid">
+            <div class="footer-section"><img src="assets/logored.png" alt="Fundación Red Educativa México"
+                    class="footer-logo-img">
+                <p>Excelencia académica con respaldo oficial.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Fundación Red Educativa México</h3>
+                <p>Plataforma integral de evaluación, acreditación y homologación de programas educativos.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p><a href="tel:8000440189" class="footer-link"><i class="fas fa-phone"></i> 800 0440 189</a></p>
+                <p><a href="mailto:admin@rededucativamexico.org" class="footer-link"><i class="fas fa-envelope"></i>
+                        admin@rededucativamexico.org</a></p>
+                <div class="social-icons"><a href="https://web.facebook.com/RedEduMex/" class="social-icon"><i
+                            class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/rededucativamexico/"
+                        class="social-icon"><i class="fab fa-instagram"></i></a><a
+                        href="https://www.tiktok.com/@rededucativamex" class="social-icon"><i
+                            class="fab fa-tiktok"></i></a><a href="https://x.com/RPre4t" class="social-icon"><i
+                            class="fab fa-twitter"></i></a></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Red Educativa México. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Chat flotante -->
+    <a href="contacto.html" class="chat-flotante" title="¿Necesitas ayuda? Contáctanos"><i
+            class="fas fa-comment-dots"></i></a>
+
+    <!-- Modal de inscripción con desplegable -->
+    <div id="inscripcionModal" class="modal-overlay">
+        <div class="modal-container">
+            <span class="modal-close" id="closeModalBtn">&times;</span>
+            <h3>Solicitar inscripción</h3>
+            <form class="form-inscripcion" id="inscripcionForm">
+                <input type="text" name="nombre" placeholder="Nombre completo *" required>
+                <input type="email" name="email" placeholder="Correo electrónico *" required>
+                <input type="tel" name="telefono" placeholder="Teléfono / WhatsApp *" required>
+                <select name="programa" id="selectCarrera" required>
+                    <option value="" disabled selected>-- Selecciona el área de titulación --</option>
+                </select>
+                <button type="submit">Enviar solicitud <i class="fas fa-paper-plane"></i></button>
+            </form>
+            <p style="font-size:0.75rem; margin-top:1rem; text-align:center; color:gray;">Tus datos serán tratados
+                confidencialmente.</p>
+        </div>
+    </div>
+    <div id="notificationToast" class="toast-modal"><i id="toastIcon" class="fas fa-check-circle"></i><span
+            id="toastMessage">Mensaje</span></div>
+
+    <script>
+        // ==================== LISTA DE CARRERAS (exactamente las 8) ====================
+        const carrerasList = [
+            "Ingeniería Industrial",
+            "Derecho",
+            "Contaduría",
+            "Educación Preescolar",
+            "Ingeniería Computacional",
+            "Ciencias de la Comunicación",
+            "Mercadotecnia",
+            "Ciencias Políticas y Administración Pública"
+        ];
+
+        // Llenar el select del modal
+        function populateSelect() {
+            const select = document.getElementById("selectCarrera");
+            if (!select) return;
+            select.innerHTML = '<option value="" disabled selected>-- Selecciona el área de titulación --</option>';
+            carrerasList.forEach(carrera => {
+                const opt = document.createElement("option");
+                opt.value = carrera;
+                opt.textContent = carrera;
+                select.appendChild(opt);
+            });
+        }
+
+        // Renderizar badges (etiquetas) de todas las carreras
+        function renderBadges() {
+            const container = document.getElementById("carrerasBadgesGrid");
+            if (!container) return;
+            container.innerHTML = carrerasList.map(carrera => `<span class="badge-carrera">${escapeHtml(carrera)}</span>`).join('');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return "";
+            return str.replace(/[&<>]/g, function (m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        // ==================== MENÚS ====================
+        const btnOferta = document.getElementById('btnOfertaDesktop'), submenu = document.getElementById('desktopSubmenu');
+        if (btnOferta && submenu) { btnOferta.addEventListener('click', (e) => { e.stopPropagation(); submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block'; }); document.addEventListener('click', (e) => { if (!btnOferta.contains(e.target) && !submenu.contains(e.target)) submenu.style.display = 'none'; }); }
+        const mobileToggle = document.getElementById('mobileMenuToggle'), mobilePanel = document.getElementById('mobileMenuPanel');
+        if (mobileToggle) mobileToggle.addEventListener('click', () => { mobilePanel.style.display = mobilePanel.style.display === 'block' ? 'none' : 'block'; });
+        const mobileOfertaBtn = document.getElementById('mobileOfertaBtn'), mobileSubmenuDiv = document.getElementById('mobileSubmenuList'), mobileChevron = document.getElementById('mobileChevron');
+        if (mobileOfertaBtn && mobileSubmenuDiv) { mobileOfertaBtn.addEventListener('click', () => { const isVisible = mobileSubmenuDiv.style.display === 'block'; mobileSubmenuDiv.style.display = isVisible ? 'none' : 'block'; if (mobileChevron) mobileChevron.style.transform = isVisible ? 'rotate(0deg)' : 'rotate(180deg)'; }); }
+        window.addEventListener('resize', () => { if (window.innerWidth > 992 && mobilePanel) mobilePanel.style.display = 'none'; if (submenu) submenu.style.display = 'none'; });
+
+        // ==================== MODAL Y ENVÍO ====================
+        const modal = document.getElementById('inscripcionModal');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const openRegistroBtn = document.getElementById('openRegistroBtn');
+        const form = document.getElementById('inscripcionForm');
+        const selectCarrera = document.getElementById('selectCarrera');
+        const toast = document.getElementById('notificationToast');
+        const toastIcon = document.getElementById('toastIcon');
+        const toastMessage = document.getElementById('toastMessage');
+
+        function showToast(msg, isError = false) {
+            toast.classList.remove('success', 'error');
+            if (isError) { toast.classList.add('error'); toastIcon.className = 'fas fa-exclamation-triangle'; }
+            else { toast.classList.add('success'); toastIcon.className = 'fas fa-check-circle'; }
+            toastMessage.innerText = msg;
+            toast.classList.add('active');
+            setTimeout(() => toast.classList.remove('active'), 4000);
+        }
+
+        openRegistroBtn.addEventListener('click', () => {
+            populateSelect(); // Llenar el select antes de mostrar
+            modal.classList.add('active');
+        });
+        closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+        window.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const nombre = form.querySelector('input[name="nombre"]').value.trim();
+            const email = form.querySelector('input[name="email"]').value.trim();
+            const telefono = form.querySelector('input[name="telefono"]').value.trim();
+            const carrera = selectCarrera.value;
+
+            if (!nombre || !email || !telefono || !carrera) {
+                showToast('Por favor, completa todos los campos.', true);
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('nombre', nombre);
+            formData.append('email', email);
+            formData.append('telefono', telefono);
+            formData.append('programa', carrera);
+            formData.append('_captcha', 'false');
+            formData.append('_confirmation', 'false');
+            formData.append('_subject', `Nueva solicitud de inscripción - ${carrera}`);
+
+            try {
+                const response = await fetch('https://formsubmit.co/sistemas.redmex@gmail.com', {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    showToast('✅ ¡Solicitud enviada! Te contactaremos pronto.');
+                    form.reset();
+                    modal.classList.remove('active');
+                } else {
+                    showToast('❌ Error al enviar. Intenta de nuevo.', true);
+                }
+            } catch (error) {
+                showToast('❌ Error de conexión.', true);
+            }
+        });
+
+        // Renderizar badges al cargar la página
+        renderBadges();
+    </script>
+</body>
+
+</html>
