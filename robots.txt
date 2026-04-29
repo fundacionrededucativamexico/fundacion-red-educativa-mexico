@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fundacionrededucativamexico.github.io/fundacion-red-educativa-mexico/sitemap.xml
