@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Error general - Fundación Red Educativa México">
+    <meta name="keywords" content="Red Educativa, educación, error">
+    <meta name="author" content="Fundación Red Educativa México">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Error - Algo salió mal | Fundación Red Educativa México</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="./assets/img/R_RED.png" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1A1F36;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Paleta institucional */
+        :root {
+            --color-primary: #5A0C28;
+            --color-primary-dark: #3E071B;
+            --color-gold: #D4AF37;
+            --color-gold-dark: #B38F2A;
+            --color-gray-bg: #F9F8FC;
+            --color-border: #EDEFF2;
+            --shadow-md: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.25s ease;
+        }
+
+        /* HEADER */
+        .shared-header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1100;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .top-bar {
+            background-color: var(--color-primary);
+            color: white;
+            font-size: 0.85rem;
+            padding: 0.5rem 0;
+        }
+
+        .top-bar-container,
+        .main-header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar-left span i {
+            margin-right: 8px;
+            color: var(--color-gold);
+        }
+
+        .main-header {
+            background: white;
+            padding: 0.2rem 0;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .logo-img {
+            display: block;
+            height: 48px;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
+        }
+
+        /* Navegación desktop */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: #2D3748;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link i {
+            font-size: 0.75rem;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-primary);
+        }
+
+        /* Mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: white;
+            border-top: 1px solid var(--color-border);
+            padding: 1rem 0;
+        }
+
+        .mobile-nav-link {
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            color: #2D3748;
+            display: block;
+        }
+
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Error General Section */
+        .error-section {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 1.5rem;
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+        }
+
+        .error-container {
+            max-width: 600px;
+            background: white;
+            border-radius: 32px;
+            padding: 3rem 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
+        }
+
+        .error-icon {
+            font-size: 6rem;
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+        }
+
+        .error-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .error-subtitle {
+            font-size: 1.25rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .error-description {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .btn-home {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(90, 12, 40, 0.3);
+        }
+
+        .btn-home:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(90, 12, 40, 0.4);
+        }
+
+        .btn-contact {
+            display: inline-block;
+            background: var(--color-gold);
+            color: var(--color-primary);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-left: 1rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-contact:hover {
+            background: var(--color-gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Footer */
+        .shared-footer {
+            background: var(--color-primary-dark);
+            color: #ffffff;
+            padding: 3rem 1.5rem 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            color: var(--color-gold);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-link {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--color-gold);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            background: var(--color-gold);
+            color: var(--color-primary-dark);
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: white;
+            color: var(--color-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+
+            .error-title {
+                font-size: 2.5rem;
+            }
+
+            .error-icon {
+                font-size: 4rem;
+            }
+
+            .btn-contact {
+                margin-left: 0;
+                margin-top: 1rem;
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="shared-header">
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="top-bar-left"><span><i class="fas fa-phone-alt"></i> 800 0440 189</span></div>
+        </div>
+    </div>
+    <nav class="main-header">
+        <div class="main-header-container">
+            <a href="index.html" class="logo-link">
+                <img src="assets/logored.png" alt="Red Educativa México" class="logo-img">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+                <li style="position: relative;">
+                    <button class="nav-link" id="btnOfertaDesktop">
+                        Oferta Educativa <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div id="desktopSubmenu" class="submenu" style="display: none;">
+                        <a href="oferta-educativa.html">Programas Formativos</a>
+                        <a href="acuerdo286.html">Ruta/Sep-286</a>
+                        <a href="carreras-policiales.html">Programas Seguridad Pública</a>
+                        <a href="ingles.html">Certificación de Idiomas</a>
+                    </div>
+                </li>
+                <li><a href="sucursales.html" class="nav-link">Sucursales</a></li>
+                <li><a href="noticias.html" class="nav-link">Noticias</a></li>
+                <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+            </ul>
+            <button class="menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+        </div>
+        <div id="mobileMenuPanel" class="mobile-menu">
+            <nav class="mobile-nav">
+                <a href="index.html" class="mobile-nav-link">Inicio</a>
+                <a href="nosotros.html" class="mobile-nav-link">Nosotros</a>
+                <button id="mobileOfertaBtn" style="background:none; border:none; width:100%; text-align:left; padding:0.75rem 1.5rem; font-weight:600; display:flex; justify-content:space-between;">
+                    Oferta Educativa <i class="fas fa-chevron-down" id="mobileChevron"></i>
+                </button>
+                <div id="mobileSubmenuList" style="display:none; padding-left:1.5rem;">
+                    <a href="oferta-educativa.html" class="mobile-nav-link">Programas Formativos</a>
+                    <a href="acuerdo286.html" class="mobile-nav-link">Ruta/Sep-286</a>
+                    <a href="carreras-policiales.html" class="mobile-nav-link">Seguridad Pública</a>
+                    <a href="ingles.html" class="mobile-nav-link">Certificación de Idiomas</a>
+                </div>
+                </nav>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="error-section">
+        <div class="error-container">
+            <div class="error-icon">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <h1 class="error-title">¡Oops!</h1>
+            <h2 class="error-subtitle">Algo salió mal</h2>
+            <p class="error-description">
+                Lo sentimos, ha ocurrido un error inesperado. Estamos trabajando para solucionarlo.
+                Si el problema persiste, por favor contáctanos.
+            </p>
+            <a href="index.html" class="btn-home">
+                <i class="fas fa-home"></i> Ir al Inicio
+            </a>
+            <a href="contacto.html" class="btn-contact">
+                <i class="fas fa-envelope"></i> Contactar Soporte
+            </a>
+        </div>
+    </section>
+</main>
+
+<footer class="shared-footer">
+    <div class="footer-grid">
+        <div class="footer-section">
+            <img src="assets/logored.png" alt="Red Educativa México" class="footer-logo-img">
+            <p>Fundación Red Educativa México ofrece educación con validez oficial en bachillerato, inglés, carreras ejecutivas, becas y formación profesional.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Enlaces Rápidos</h3>
+            <a href="index.html" class="footer-link">Inicio</a><br>
+            <a href="nosotros.html" class="footer-link">Nosotros</a><br>
+            <a href="oferta-educativa.html" class="footer-link">Oferta Educativa</a><br>
+            <a href="contacto.html" class="footer-link">Contacto</a>
+        </div>
+        <div class="footer-section">
+            <h3>Contacto</h3>
+            <p><i class="fas fa-phone"></i> 800 0440 189</p>
+            <p><i class="fas fa-envelope"></i> info@rededucativamexico.com</p>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Fundación Red Educativa México. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
